@@ -1,0 +1,59 @@
+{
+    "users":[
+        {"id": "id",
+          "gitHubId": "id",
+          "avatar_url": "url"
+        }
+    ],
+    "projects": [
+        {
+            "id":"id",
+            "userId":"id",
+            "title": "nameOfProject",
+            "phaseId":"id",
+            "teamId":"id"
+        }
+    ],
+    "tickets": [
+        {
+            "id":"id",
+            "projectId":"id"
+        }
+    ],
+
+    "images": [
+       { "id":"id",
+        "images": "url",
+        "projectId":"id"
+        }
+    ],
+    "tasks": [
+        {
+            "id":"id",
+            "taskName":"text",
+            "dueDate":"date",
+            "phaseId": "id",
+            "userId" : "id",
+            "taskId" : "id",
+            "ticketId": "id",
+            "imageId": "id"
+        }
+    ],
+    "teams":[
+        {
+            "id": "id",
+            "teamName" : "text"
+        }
+
+    ],
+    "teamUsers":[
+        {
+            "id":"id",
+            "teamId": "id",
+            "userId": "id"
+        }
+
+    ]
+
+
+}

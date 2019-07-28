@@ -45,8 +45,8 @@ class NavBar extends Component {
             </NavItem>
             <NavItem className= "sidebar">
               <NavLink
+
               className= "text"
-              // eslint-disable-next-line
                 className={classnames({active: this.state.activeTab === '2'})}
                 onClick={() => {
                   this.toggle('2');

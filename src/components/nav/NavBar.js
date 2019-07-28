@@ -1,34 +1,86 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import React, { Component } from "react"
-import { Link, withRouter } from "react-router-dom"
+import {  withRouter } from "react-router-dom"
 import "./NavBar.css"
+import {  Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import classnames from 'classnames';
+
+
 
 class NavBar extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      activeTab: '1'
+    };
+  }
+
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab
+      });
+    }
+  }
+
   render() {
     return (
-      <div className="container">
-        <div className="row py-3">
-          <div className="col-3 order-2" id = "sticky-sidebar">
-            <nav className="container-fluid">
-              <div className="sidebar-header">
-                <h1>sidebar</h1>
-              </div>
-              <ul className="list-unstyled components">
-                <li className="nav-item">
-                  <Link className="nav-link" to="/">Dashboard</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/tasks">Tasks</Link>
-                </li>
-                <li className="nav-iß∏tem">
-                  <Link className="nav-link" to="/projects">Projects</Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
+      <Row className= "wrapper">
+        <Col xs="3" sm="3" md="2.5" className= "column">
 
+          <Nav tabs vertical pills className= "nav">
+          <NavItem className= "sidebar" >
+              <NavLink
+             color = "#ffffff"
+                className={classnames({active: this.state.activeTab === '1'})}
+                onClick={() => {
+                  this.toggle('1');
+                }}
+              >
+                Profile
+              </NavLink>
+            </NavItem>
+            <NavItem className= "sidebar">
+              <NavLink
+              className= "text"
+              // eslint-disable-next-line
+                className={classnames({active: this.state.activeTab === '2'})}
+                onClick={() => {
+                  this.toggle('2');
+                }}
+              >
+                Dashboard
+              </NavLink>
+            </NavItem>
+            <NavItem className= "sidebar" >
+              <NavLink
+             color = "#ffffff"
+                className={classnames({active: this.state.activeTab === '3'})}
+                onClick={() => {
+                  this.toggle('3');
+                }}
+              >
+                Projects
+              </NavLink>
+            </NavItem>
+            <NavItem className= "sidebar">
+              <NavLink
+                className={classnames({active: this.state.activeTab === '4'})}
+                onClick={() => {
+                  this.toggle('4');
+                }}
+              >
+               Tasks
+              </NavLink>
+            </NavItem>
+
+          </Nav>
+        </Col>
+
+      </Row>
     )
   }
 }

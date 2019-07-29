@@ -2,7 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import React, { Component } from "react"
 import {  withRouter } from "react-router-dom"
 import "./NavBar.css"
-import {  Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import {  Nav, NavItem, NavLink, Row, Col, Button} from 'reactstrap';
+
 import classnames from 'classnames';
 
 
@@ -14,7 +15,7 @@ class NavBar extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      activeTab: '1'
+      activeTab: '2'
     };
   }
 
@@ -30,23 +31,21 @@ class NavBar extends Component {
     return (
       <Row className= "wrapper">
         <Col xs="3" sm="3" md="2.5" className= "column">
-
-          <Nav tabs vertical pills className= "nav">
-          <NavItem className= "sidebar" >
-              <NavLink
-             color = "#ffffff"
+        <Button  className= "btn btn-default btn-circle  text-center"
                 className={classnames({active: this.state.activeTab === '1'})}
                 onClick={() => {
                   this.toggle('1');
                 }}
               >
                 Profile
-              </NavLink>
-            </NavItem>
+            </Button>
+
+          <Nav tabs vertical pills className= "nav">
+
             <NavItem className= "sidebar">
               <NavLink
+
               className= "text"
-              // eslint-disable-next-line
                 className={classnames({active: this.state.activeTab === '2'})}
                 onClick={() => {
                   this.toggle('2');

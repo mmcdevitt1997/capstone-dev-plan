@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter } from "react-router-dom"
 import './App.css';
 import NavBar from "./components/nav/NavBar"
+import Login from "./components/login/Login"
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
     <div className="App">
 
       <NavBar />
-      <h1>hello</h1>
+      <Login />
     </div>
     </BrowserRouter>
   );

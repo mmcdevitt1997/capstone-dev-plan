@@ -12,26 +12,27 @@ export default class Login extends Component {
       handleGithub = () => {
         loginWithGithub()
           .then(user => {
-
+             console.log (user)
             this.props.onLogin(user);
             this.props.history.push('/');
+            console.log ("hello")
           })
         }
 
-      submit = () => {
-        login(this.state.email, this.state.password)
-          .then((user) => {
-            this.props.onLogin(user);
-            this.props.history.push('/');
-          });
-      }
+    //   submit = () => {
+    //     login(this.state.email, this.state.password)
+    //       .then((user) => {
+    //         this.props.onLogin(user);
+    //         this.props.history.push('/');
+    //       });
+    //   }
 
       render() {
         return (
           <div className= "login-container">
             <h1>Login</h1>
             <form onSubmit={this.submit}>
-              <input
+              {/* <input
                 onChange={(e) => this.setState({ email: e.target.value })}
                 type="email"
                 id="email"
@@ -44,20 +45,11 @@ export default class Login extends Component {
                 id="password"
                 placeholder="Password"
                 className="form-control"
-              />
-              <button type="submit">Sign in</button>
-              {/* <label htmlFor="Remember Me">
-                <input
-                  id="rememberMe"
-                  name="rememberMe"
-                  value="remember"
-                  type="checkbox"
-                  onClick={() => {
-                    this.setState({ rememberMe: true });
-                  }}
-                />
-                Remember Me
-              </label> */}
+              /> */}
+              <button
+              type="submit"
+              onClick={() => this.handleGithub()}
+              >Sign in</button>
             </form>
           </div>
         );

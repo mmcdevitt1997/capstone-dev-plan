@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database'
-import base from '../../node_modules/re-base';
+
 
 
 
@@ -13,37 +13,72 @@ const setUserInSessionStorage = () => {
     const user = sessionStorage.getItem("user")
 }
 
+export const getAllUsers = () => {
+    return fetch(`${url}.json`)
+        .then(res => res.json())
+}
+
 export const getUser = (userId) => {
     return fetch(`${url}/${userId}.json`)
         .then(res => res.json())
 }
 
-// export const saveUserToJson = (user) => {
-//     return fetch(url, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(user)
-//     })
-//       .then(res => res.json())
-//       .then(newUser => {
-//         setUserInSessionStorage(newUser);
-//         return newUser;
-//       });
-//   }
-
 export const saveUserToJson = (user) => {
-    return base.post(`users/${user.id}`, {
-      data: user
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
     })
-      .then(() => {
-        setUserInSessionStorage(user)
+        .then(res => res.json())
+        .then(newUser => {
+            setUserInSessionStorage(newUser);
+            return newUser;
+        });
+}
+export const checkExistingUsers = (newUser) => {
+    return getAllUsers()
+        .then(objectOfUsers => {
+            let userObjArray = []
+            if (objectOfUsers !== null) {
+                const userArray = Object.keys(objectOfUsers).map(keys => {
+                    let newObj = { ...objectOfUsers[keys] }
+                    return newObj
+                })
+                userObjArray = userArray.filter(user => {
+                    if (user.id === newUser.uid) {
+                        return true
+                    } else {
+                        return false
+                    }
+                })
+                if (!!userObjArray[0]) {
 
-        //gives the user object back in order to set the user in local storage
-        return user;
-      })
-  }
+                    setUserInSessionStorage(userObjArray[0])
+
+                    return userObjArray[0]
+                } else {
+
+                    let userToSave = {
+                        name: newUser.displayName,
+                        username: newUser.displayName,
+                        email: newUser.email,
+                        password: '',
+                        userImage: newUser.photoURL,
+
+                    }
+
+                    userToSave.id = newUser.uid
+
+                    saveUserToJson(userToSave)
+                    return userToSave
+                }
+            }
+            return userObjArray[0]
+        })
+}
+
 
 
 export const registerWithFirebase = (email, password) => {

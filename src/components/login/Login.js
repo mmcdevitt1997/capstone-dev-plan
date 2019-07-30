@@ -5,27 +5,18 @@ import { login, loginWithGithub } from '../../auth/UserManager'
 import "./Login.css"
 
 export default class Login extends Component {
-    state = {
-        email: '',
-        password: ''
-      }
+    // state = {
+    //     email: '',
+    //     password: ''
+    //   }
       handleGithub = () => {
         loginWithGithub()
           .then(user => {
              console.log (user)
             this.props.onLogin(user);
-            this.props.history.push('/');
-            console.log ("hello")
+            this.props.history.push('/')
           })
         }
-
-    //   submit = () => {
-    //     login(this.state.email, this.state.password)
-    //       .then((user) => {
-    //         this.props.onLogin(user);
-    //         this.props.history.push('/');
-    //       });
-    //   }
 
       render() {
         return (
@@ -47,7 +38,7 @@ export default class Login extends Component {
                 className="form-control"
               /> */}
               <button
-              type="submit"
+              type="button"
               onClick={() => this.handleGithub()}
               >Sign in</button>
             </form>

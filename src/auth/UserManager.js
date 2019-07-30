@@ -4,7 +4,6 @@ import 'firebase/database'
 
 
 
-
 const url = "https://dev-plan-578fe.firebaseio.com/users"
 
 const provider = new firebase.auth.GithubAuthProvider();
@@ -121,6 +120,7 @@ export const loginWithGithub = () => {
             // ...
 
             console.log("token: ", token, "user: ", user)
+            return checkExistingUsers(user)
 
         })
 }

@@ -1,23 +1,22 @@
-import { Route, withRouter, Router } from "react-router-dom";
+import { Route, BrowserRouter as Router} from "react-router-dom";
 import React, { Component } from "react";
-import NavBar from "../nav/NavBar"
+
 
 
 class ApplicationViews extends Component {
     state = {
-        users: [],
-        articles: [],
-        events: [],
+        projects: [],
         tasks: [],
-        messages: [],
-        friends: []
+        teams: [],
+        tickets: [],
+        teamUsers: []
     }
+    isAuthenticated = () => sessionStorage.getItem("id") !== null;
 
     render() {
         return (
             <React.Fragment>
                 <Router>
-                <NavBar  />
                 <Route exact path="/" render={(props) => {
                     return null
                 }} />
@@ -27,11 +26,10 @@ class ApplicationViews extends Component {
                 <Route path="/projects" render={(props) => {
                     return null
                 }} />
-
                 </Router>
             </React.Fragment>
         )
     }
 }
 
-export default withRouter(ApplicationViews);
+export default ApplicationViews;

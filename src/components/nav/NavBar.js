@@ -28,6 +28,7 @@ class NavBar extends Component {
   }
 
   render() {
+
     return (
       <Row className= "wrapper">
         <Col xs="3" sm="3" md="2.5" className= "column">

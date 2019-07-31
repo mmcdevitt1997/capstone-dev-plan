@@ -5,7 +5,7 @@ import './App.css';
 import NavBar from "./components/nav/NavBar"
 import ApplicationViews from './components/tasks/ApplicationViews';
 import Login from './components/login/Login'
-import {setUserInSessionStorage, getUserInSessionStorage} from "./auth/UserManager"
+import { setUserInSessionStorage, getUserInSessionStorage } from "./auth/UserManager"
 
 
 class App extends Component {
@@ -14,26 +14,26 @@ class App extends Component {
     user: getUserInSessionStorage()
   }
 
-  render(){
-  return (
-    <BrowserRouter>
+  render() {
+    return (
+      <BrowserRouter>
 
-      <div className="App">
-      <Route path="/login" render={(props) => <Login {...props} onLogin={(user) => this.setState({ user: user })} />} />
-      <Route path="/" render={(props) => {
+        <div className="App">
+          <Route path="/login" render={(props) => <Login {...props} onLogin={(user) => this.setState({ user: user })} />} />
+          <Route path="/" render={(props) => {
             return this.state.user ? (
               <>
-               <NavBar />
-        <ApplicationViews />
+                <NavBar />
+                <ApplicationViews />
               </>
             ) : (
                 <Redirect to="/login" />
               )
           }} />
 
-      </div>
-    </BrowserRouter>
-  );
+        </div>
+      </BrowserRouter>
+    );
   }
 }
 

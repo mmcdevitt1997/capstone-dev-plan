@@ -1,13 +1,17 @@
-import {getUserInSessionStorage} from "../../auth/UserManager"
-import {clientSecret, clientId} from "../../config/GithubAPIKeys"
 
 const gitHubApi = "https://api.github.com/"
-const currentUserToken = sessionStorage.getItem('token')
+let userLogin = getCurrentUserGiHub
 
-       export const getCurrentUserRepos = () => {
-         return fetch(`${gitHubApi}user?access_token =${currentUserToken}`)
+       export const getCurrentUserGiHub = () => {
+        const currentUserToken = sessionStorage.getItem('token').slice(1,-1)
+           console.log(currentUserToken)
+         return fetch(`${gitHubApi}user?access_token=${currentUserToken}`,{
+         "headers": {
+             "Accept": "application/json"
+         }
+        }
+         )
                .then(r => r.json())
-               .then(test => console.log(test))
+               .then(test => console.log(test.login))
        }
-    //    https://api.github.com/users/Matthew McDevitt/repos
 

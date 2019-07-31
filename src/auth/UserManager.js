@@ -7,9 +7,13 @@ const url = "https://dev-plan-578fe.firebaseio.com/users";
 
 const provider = new firebase.auth.GithubAuthProvider();
 
-export const setUserInSessionStorage = user => {
-  sessionStorage.setItem("user", JSON.stringify(user));
+export const setUserInSessionStorage = (user) => {
+  sessionStorage.setItem("user", JSON.stringify(user))
 };
+
+export const sessionStorageToken = token => {
+    sessionStorage.setItem ("token", JSON.stringify(token) )
+}
 export const getUserInSessionStorage = () => {
   // eslint-disable-next-line
   const user = sessionStorage.getItem("user");
@@ -37,7 +41,7 @@ export const saveUserToJson = user => {
 };
 
 // this compares the  users in the database and the github user and will add if the user isn't there
-export const checkExistingUsers = (newUser, token) => {
+export const checkExistingUsers = (newUser) => {
   return getAllUsers().then(objectOfUsers => {
     let userObjArray = [];
     console.log(objectOfUsers);
@@ -64,7 +68,7 @@ export const checkExistingUsers = (newUser, token) => {
           email: newUser.email,
           password: "",
           userImage: newUser.photoURL,
-          token: token
+
         };
 
         userToSave.id = newUser.uid;
@@ -87,14 +91,16 @@ export const loginWithGithub = () => {
       // The signed-in user info.
       const user = result.user;
       // ...
-    //   const gitHubApi = "https://api.github.com/"
-    //          const getCurrentUserRepos = () => {
-    //                  fetch(`${gitHubApi}user?$access_token =${token}`)
-    //                  .then(r => r.json())
-    //                  .then(test => console.log(test))
-    //          }
+      const gitHubApi = "https://api.github.com/"
 
+      const getCurrentUserReposTest = () => {
+                   fetch(`${gitHubApi}user?$access_token=${token}`)
+                     .then(r => r.json())
+                     .then(test => console.log(test))
+             }
+       sessionStorageToken(token)
       console.log("token: ", token, "user: ", user);
       return checkExistingUsers(user, token);
+
     });
 };

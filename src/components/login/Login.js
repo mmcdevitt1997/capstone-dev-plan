@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import{ getCurrentUserGiHub } from '../githubAPI/GithubAPI'
 
 import { login, loginWithGithub } from '../../auth/UserManager'
 import "./Login.css"
@@ -9,10 +10,13 @@ export default class Login extends Component {
       handleGithub = () => {
         loginWithGithub()
           .then(user => {
+
              console.log ("hello" ,user)
             this.props.onLogin(user);
+
             this.props.history.push('/')
           })
+          .then ( () => getCurrentUserGiHub ())
         }
 
       render() {

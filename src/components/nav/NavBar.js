@@ -3,7 +3,6 @@ import React, { Component } from "react"
 import {  withRouter } from "react-router-dom"
 import "./NavBar.css"
 import {  Nav, NavItem, NavLink, Row, Col, Button} from 'reactstrap';
-import {getCurrentUserRepos} from "../githubAPI/GithubAPI"
 
 import classnames from 'classnames';
 
@@ -29,7 +28,7 @@ class NavBar extends Component {
   }
 
   render() {
-    getCurrentUserRepos()
+
     return (
       <Row className= "wrapper">
         <Col xs="3" sm="3" md="2.5" className= "column">

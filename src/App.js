@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom"
 import './App.css';
 import NavBar from "./components/nav/NavBar"
-import ApplicationViews from './components/tasks/ApplicationViews';
+import ApplicationViews from './components/ApplicationViews';
 import Login from './components/login/Login'
 import { setUserInSessionStorage, getUserInSessionStorage } from "./auth/UserManager"
 

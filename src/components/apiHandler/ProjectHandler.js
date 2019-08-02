@@ -1,4 +1,5 @@
 import ApiHandler from "./ApiHandler"
+const userId = sessionStorage.getItem("userId")
 
 export default Object.create(ApiHandler, {
   get: {
@@ -8,8 +9,14 @@ export default Object.create(ApiHandler, {
   },
 getAll: {
     value: function (){
-        return ApiHandler.all("projects")
+        return ApiHandler.all("projects").then(projectData => {
+              Object.keys(projectData).forEach(function (key) {
+              projectData[key].id = key
+              console.log(Object.values(projectData))
+            })
     }
+        )
+}
 },
 delete: {
     value: function(id){

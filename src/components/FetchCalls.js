@@ -1,17 +1,13 @@
 // import React, { Component } from "react";
-// import { withRouter } from "react-router-dom"
-// import NavBar from "../nav/NavBar"
-// import ApplicationViews from "./ApplicationViews"
+import ProjectHandler from "./apiHandler/ProjectHandler"
 
+// export const addProject = (project) => {
+//     ProjectHandler.post(project)
+//     .then(() => ProjectHandler.getAll())
+//     .then(projects =>
+//         this.setState({
+//           projects: projects
+//         })
+//       );
+// }
 
-// class DevPlan extends Component {
-//     render() {
-//         return (
-//           <React.Fragment>
-//             {/* <NavBar  /> */}
-//             <ApplicationViews />
-//           </React.Fragment>
-//         );
-//       }
-//     }
-//     export default withRouter(DevPlan);

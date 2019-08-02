@@ -18,6 +18,9 @@ export const getUserInSessionStorage = () => {
   // eslint-disable-next-line
   const user = sessionStorage.getItem("user");
 };
+export const sessionStorageUserId = userId => {
+  sessionStorage.setItem ("userId",userId)
+}
 
 export const getAllUsers = () => {
   return fetch(`${url}.json`).then(r => r.json());
@@ -99,6 +102,7 @@ export const loginWithGithub = () => {
                      .then(test => console.log(test))
              }
        sessionStorageToken(token)
+       sessionStorageUserId(user.uid)
       console.log("token: ", token, "user: ", user);
       return checkExistingUsers(user, token);
 

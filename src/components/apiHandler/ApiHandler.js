@@ -3,31 +3,31 @@ const url = "https://dev-plan-578fe.firebaseio.com"
 export default Object.create(null, {
     get: {
         value: function (resource, id) {
-            return fetch(`${url}/${resource}/${id}`).then(data => data.json())
+            return fetch(`${url}/${resource}/${id}.json`).then(data => data.json())
         }
     },
     all: {
         value: function (resource) {
-            return fetch(`${url}/${resource}`).then(data => data.json())
+            return fetch(`${url}/${resource}.json`).then(data => data.json())
         }
     },
 
     getAllExpand: {
      value: function (resource, expandResource) {
-         return fetch(`${url}/${resource}?_expand=${expandResource}&_sort=timeStamp`).then(data => data.json())
+         return fetch(`${url}/${resource}?_expand=${expandResource}&_sort=timeStamp.json`).then(data => data.json())
          }
      },
 
     delete: {
         value: function (resource, id) {
-            return fetch(`${url}/${resource}/${id}`, {
+            return fetch(`${url}/${resource}/${id}.json`, {
                 method: "DELETE"
             }).then(e => e.json())
         }
     },
     post: {
         value: function (resource, newData){
-            return fetch (`${url}/${resource}`,{
+            return fetch (`${url}/${resource}.json`,{
                 method: "POST",
                 headers: {
                  "Content-Type": "application/json"
@@ -38,7 +38,7 @@ export default Object.create(null, {
     },
     put: {
         value: function (resource, editData){
-            return fetch (`${url}/${resource}/${editData.id}`,{
+            return fetch (`${url}/${resource}/${editData.id}.json`,{
              method: "PUT",
              headers: {
                "Content-Type": "application/json"
@@ -50,7 +50,7 @@ export default Object.create(null, {
 
     search: {
         value: function (resource, id) {
-            return fetch(`${url}/${resource}/${id}`).then(data => data.json())
+            return fetch(`${url}/${resource}/${id}.json`).then(data => data.json())
         }
     },
 

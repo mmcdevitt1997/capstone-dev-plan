@@ -3,9 +3,9 @@ import  {getUserInSessionStorage} from "../../auth/UserManager"
 export default class ProjectForm extends Component {
   state = {
     userId: "",
-    ProjectName: "",
-    dueDate: "",
-    PhaseId: false
+    taskName: "",
+    taskDueDate: "",
+    phaseId: false
   };
 
   handleFieldChange = evt => {
@@ -14,26 +14,26 @@ export default class ProjectForm extends Component {
     this.setState(stateToChange);
   };
 
-  constructNewProject = evt => {
+  constructNewTask = evt => {
     evt.preventDefault();
-    const project = {
+    const task = {
       userId: sessionStorage.getItem("userId"),
-      projectName: this.state.projectName,
-      dueDate: this.state.dueDate,
+      taskName: this.state.projectName,
+      taskDueDate: this.state.taskDueDate,
       phaseId: false
     };
     this.props
-      .addProject(project)
+      .addTask(task)
       // .then(() => this.props.history.push("/projects"));
   };
   // the new task form
   render() {
-    console.log("i have rendered")
+
     return (
       <React.Fragment>
         <form className="projectForm">
           <div className="form-group">
-            <label htmlFor="projectName">
+            <label htmlFor="taskName">
               Enter the name of your project repo
             </label>
             <input
@@ -41,12 +41,12 @@ export default class ProjectForm extends Component {
               required
               className="form-control"
               onChange={this.handleFieldChange}
-              id="projectName"
-              placeholder="Project Repo"
+              id="taskName"
+              placeholder="Task Name"
             />
           </div>
           <div className="form-group">
-            <label htmlFor="dueDate"> Project Due Date</label>
+            <label htmlFor="taskDueDate"> Project Due Date</label>
             <input
               type="date"
               required
@@ -58,7 +58,7 @@ export default class ProjectForm extends Component {
           </div>
           <button
             type="submit"
-            onClick={this.constructNewProject}
+            onClick={this.constructNewTask}
             className="btn btn-primary"
           >
             Submit

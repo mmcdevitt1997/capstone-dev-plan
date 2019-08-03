@@ -6,6 +6,8 @@ import Task from "./tasks/Task";
 import ProjectForm from "./projects/ProjectForm"
 import ProjectHandler from "./apiHandler/ProjectHandler"
 import UserHandler from "./apiHandler/UserHandler"
+import TaskHandler from "./apiHandler/TaskHandler"
+import TaskForm from "./tasks/TaskForm"
 import AutoComplete from "./autoComplete/AutoComplete";
 
 
@@ -26,7 +28,26 @@ class ApplicationViews extends Component {
       .then (projects => {
         this.setState({projects:projects})
       })
-    }
+      .then(() => TaskHandler.getAll())
+      .then (tasks => {
+        this.setState({tasks:tasks})
+      })
+
+  }
+  addTask = (task) => {
+    TaskHandler.post(task)
+      .then(() => TaskHandler.getAll())
+      .then(tasks => {
+        this.setState({ tasks:tasks })
+      })
+  }
+  deleteTask = id => {
+    TaskHandler.delete(id)
+    .then(() => TaskHandler.getAll())
+    .then (tasks => {
+      this.setState({tasks:tasks})
+    })
+  }
 
   addProject = (project) => {
     ProjectHandler.post(project)
@@ -57,9 +78,17 @@ class ApplicationViews extends Component {
             }}
           />
           <Route
+          exact
             path="/tasks"
             render={props => {
-            return <Task tasks={this.state.tasks} />
+            return <Task {...props} tasks={this.state.tasks}  />
+            }}
+          />
+          <Route
+          exact
+            path="/tasks/new"
+            render={props => {
+            return <TaskForm {...props} addTask={this.addTask} />
             }}
           />
           <Route

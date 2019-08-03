@@ -70,7 +70,7 @@ class NavBar extends Component {
             </NavItem>
             <NavItem className= "sidebar">
             <Link
-                to="/tasks/new"
+                to="/tasks"
                 className={classnames({active: this.state.activeTab === '4'})}
                 onClick={() => {
                   this.toggle('4');

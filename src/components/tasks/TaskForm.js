@@ -20,6 +20,7 @@ export default class ProjectForm extends Component {
       userId: sessionStorage.getItem("userId"),
       taskName: this.state.projectName,
       taskDueDate: this.state.taskDueDate,
+      projectId:"",
       phaseId: false
     };
     this.props
@@ -31,10 +32,10 @@ export default class ProjectForm extends Component {
 
     return (
       <React.Fragment>
-        <form className="projectForm">
+        <form className="taskForm">
           <div className="form-group">
             <label htmlFor="taskName">
-              Enter the name of your project repo
+              task
             </label>
             <input
               type="text"

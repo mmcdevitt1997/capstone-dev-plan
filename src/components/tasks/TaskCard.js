@@ -15,7 +15,7 @@ export default class TaskCard extends Component {
           <p>Due Date: {this.props.task.taskDueDate}</p>
 
           <button
-            // onClick={() => this.props.deleteProject(this.props.project.id)}
+            onClick={() => this.props.deleteTask(this.props.task.id)}
             className="delete-btn"
           >
             Delete

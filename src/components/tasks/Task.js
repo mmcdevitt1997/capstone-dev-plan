@@ -4,7 +4,7 @@ import TaskCard from "./TaskCard"
 export default class Project extends Component {
 // Filter to make sure that the tasks are the current user
 
-    render() {console.log(this.props.projects)
+    render() {console.log(this.props.tasks)
 
         return (
 
@@ -16,7 +16,7 @@ export default class Project extends Component {
                         onClick={() => {
                             this.props.history.push("/tasks/new")
                         }
-                        }>Add Projects</button>
+                        }>Add Task</button>
                 </div>
 
                 <section className="tasks">

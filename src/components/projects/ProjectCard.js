@@ -12,7 +12,7 @@ export default class ProjectCard extends Component {
 
         <div className="card-body">
 
-            <h5 className="card-title">{this.props.task.projectName}</h5>
+            <h5 className="card-title">{this.props.project.projectName}</h5>
 
           <p>Due Date: {this.props.project.dueDate}</p>
 

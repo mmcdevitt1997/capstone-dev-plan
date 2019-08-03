@@ -1,5 +1,7 @@
 const url = "https://dev-plan-578fe.firebaseio.com"
 
+
+
 export default Object.create(null, {
     get: {
         value: function (resource, id) {
@@ -55,3 +57,4 @@ export default Object.create(null, {
     },
 
  })
+//  return fetch(`${url}/${resource}.json?orderBy="userId"&equalTo="${currentUserId}"`).then(data => data.json())?\

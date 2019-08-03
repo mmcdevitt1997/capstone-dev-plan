@@ -18,12 +18,9 @@ export default class Login extends Component {
         this.props.history.push('/')
       })
       .then(() => getUserGiHub.getUser())
-      .then(() => (getReposGithub.getRepos().then(data => console.log(data))))
-    // .then(() => (ProjectHandler.getAll().then(data => {
-    //   Object.keys(data).forEach(function (key){
-    //     data[key].id =key
-    //   console.log(Object.values(data))
-  }
+      .then(() => (getReposGithub.getRepos().then(data => {data.forEach(function (project){
+       console.log (project.name)
+      })})))}
 
 
 

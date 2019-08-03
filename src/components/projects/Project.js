@@ -15,7 +15,7 @@ export default class Project extends Component {
                     <button type="button"
                         className="btn btn-success"
                         onClick={() => {
-                            this.props.history.push("/projects/bew")
+                            this.props.history.push("/projects/new")
                         }
                         }>Add Projects</button>
                 </div>

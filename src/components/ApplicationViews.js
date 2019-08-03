@@ -5,6 +5,8 @@ import Project from "./projects/Project";
 import ProjectForm from "./projects/ProjectForm"
 import ProjectHandler from "./apiHandler/ProjectHandler"
 import UserHandler from "./apiHandler/UserHandler"
+import AutoComplete from "./autoComplete/AutoComplete";
+
 
 class ApplicationViews extends Component {
   state = {
@@ -13,35 +15,33 @@ class ApplicationViews extends Component {
     tasks: [],
     teams: [],
     tickets: [],
-    teamUsers: []
+    teamUsers: [],
+    suggestions: []
   };
   componentDidMount() {
     UserHandler.getAll()
       .then(users => this.setState({ users: users }))
       .then(() => ProjectHandler.getAll())
       .then (projects => {
-        console.log(projects)
+        this.setState({projects:projects})
       })
     }
-    //  .then(Object.values(projectData)) => this.setSate({projects: projects}))
 
-    //  .then( projects => this.setState({projects: projects}))
-    // .then(() => MessageHandler.getAll())
-    // .then(messages => {
-    //   let newMessages = messages.sort((a, b) => a.timestamp - b.timestamp);
-    //   this.setState({ messages: newMessages });
-    // });
-
-
-  // addProject(projects);
   addProject = (project) => {
     ProjectHandler.post(project)
       .then(() => ProjectHandler.getAll())
       .then(projects => {
         this.setState({ projects: projects })
       })
-
   }
+  deleteProject = id => {
+    ProjectHandler.delete(id)
+    .then(() => ProjectHandler.getAll())
+    .then (projects => {
+      this.setState({projects:projects})
+    })
+  }
+
   isAuthenticated = () => sessionStorage.getItem("id") !== null;
 
   render() {
@@ -58,14 +58,13 @@ class ApplicationViews extends Component {
           <Route
             path="/tasks"
             render={props => {
-              return null;
+            return <AutoComplete {...props} />
             }}
           />
           <Route
             exact
             path="/projects/new"
             render={props => {
-
               return (
                 <ProjectForm {...props} addProject={this.addProject} />
               );
@@ -76,7 +75,7 @@ class ApplicationViews extends Component {
             path="/projects"
             render={props => {
               console.log(this.state.projects)
-              return <Project {...props} projects={this.state.projects} />
+              return <Project {...props} projects={this.state.projects} deleteProject={this.deleteProject} />
             }}
           />
 

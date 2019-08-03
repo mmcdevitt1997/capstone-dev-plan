@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import  {getUserInSessionStorage} from "../../auth/UserManager"
+// import AutoComplete from "../autoComplete/AutoComplete"
 export default class ProjectForm extends Component {
   state = {
     userId: "",
@@ -36,14 +37,7 @@ export default class ProjectForm extends Component {
             <label htmlFor="projectName">
               Enter the name of your project repo
             </label>
-            <input
-              type="text"
-              required
-              className="form-control"
-              onChange={this.handleFieldChange}
-              id="projectName"
-              placeholder="Project Repo"
-            />
+            {/* <AutoComplete {...this.props} /> */}
           </div>
           <div className="form-group">
             <label htmlFor="dueDate"> Project Due Date</label>

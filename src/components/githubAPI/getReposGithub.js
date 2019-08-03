@@ -6,6 +6,6 @@ export default Object.create(getUserGiHub, {
     getRepos: {
         value: function () {
            return getUserGiHub.getUser().then(res => res.login).then(userLogin =>
-               fetch(`${gitHubApi}users/${userLogin}/repos? ${clientId}&${clientSecret}`).then(data => data.json().then(repos => repos.name))
+               fetch(`${gitHubApi}users/${userLogin}/repos? ${clientId}&${clientSecret}`).then(data => data.json())
 
             )}}})

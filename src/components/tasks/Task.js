@@ -1,6 +1,5 @@
-
 import React, { Component } from 'react'
-import ProjectCard from "./ProjectCard"
+import TaskCard from "./TaskCard"
 
 export default class Project extends Component {
 // Filter to make sure that the tasks are the current user
@@ -10,22 +9,22 @@ export default class Project extends Component {
         return (
 
             <div>
-                <h1 className="title">Project Page</h1>
+                <h1 className="title">Task Page</h1>
                 <div className="AddTaskButton">
                     <button type="button"
                         className="btn btn-success"
                         onClick={() => {
-                            this.props.history.push("/projects/new")
+                            this.props.history.push("/tasks/new")
                         }
                         }>Add Projects</button>
                 </div>
 
-                <section className="projects">
+                <section className="tasks">
                     {
 
-                        this.props.projects.map(project =>
-                                <div key={project.id}  >
-                                    <ProjectCard key={project.id} project={project} {...this.props} />
+                        this.props.tasks.map(task =>
+                                <div key={task.id}  >
+                                    <TaskCard key={task.id} task={task} {...this.props} />
                                 </div>
                         )
                     }

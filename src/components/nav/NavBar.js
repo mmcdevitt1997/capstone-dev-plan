@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import React, { Component } from "react"
-import {  withRouter } from "react-router-dom"
+import {  withRouter, Link,} from "react-router-dom"
 import "./NavBar.css"
 import {  Nav, NavItem, NavLink, Row, Col, Button} from 'reactstrap';
 
@@ -45,36 +45,39 @@ class NavBar extends Component {
 
             <NavItem className= "sidebar">
               <NavLink
-
-              className= "text"
+                to="/"
+               className= "text"
                 className={classnames({active: this.state.activeTab === '2'})}
                 onClick={() => {
-                  this.toggle('2');
+                  this.toggle('2')
                 }}
               >
                 Dashboard
               </NavLink>
             </NavItem>
             <NavItem className= "sidebar" >
-              <NavLink
+              <Link
              color = "#ffffff"
                 className={classnames({active: this.state.activeTab === '3'})}
+                to ="/projects"
                 onClick={() => {
                   this.toggle('3');
+                  console.log("click")
                 }}
               >
                 Projects
-              </NavLink>
+              </Link>
             </NavItem>
             <NavItem className= "sidebar">
-              <NavLink
+            <Link
+                to="/tasks/new"
                 className={classnames({active: this.state.activeTab === '4'})}
                 onClick={() => {
                   this.toggle('4');
                 }}
               >
                Tasks
-              </NavLink>
+               </Link>
             </NavItem>
 
           </Nav>

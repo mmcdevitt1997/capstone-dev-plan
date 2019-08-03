@@ -1,18 +1,24 @@
 import React from "react";
 import getReposGithub from "../githubAPI/getReposGithub";
+
+const gitRepoNames = () =>{ getReposGithub.getRepos().then(data => {
+    data.forEach(function (project) {
+       return project.name
+    })
+})
+}
+
 export default class AutoComplete extends React.Component {
+
     constructor(props) {
         super(props);
-        this.projectNames = getReposGithub.getRepos().then(data => {
-            data.forEach(function (project) {
-                return console.log(project.name)
-            });
-        });
+        this.projectNames = gitRepoNames()
         this.state = {
             suggestions: [],
             text: ''
         }
     }
+
     onTextChanged = (i) => {
         const value = i.target.value
         let suggestions = []
@@ -38,7 +44,7 @@ renderSuggestions(){
     return (
         <ul>
             {this.suggestions(projectNames => (
-                <li onClick= {()=>this.suggestionSelected(projectNames)}>{projectNames}</li>
+                <li onClick= {()=>this.suggestionSelected(projectNames)}>{projectNames.name}</li>
             ))}
         </ul>
     )
@@ -52,7 +58,4 @@ render() {
             <input value ={text} onChange={i => i.target.value} type="text" />
              {this.renderSuggestions()}
         </div>
-    );
-}
-
-}
+    )}}

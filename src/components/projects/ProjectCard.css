@@ -1,0 +1,10 @@
+div.card-body{
+    width: 300px;
+}
+
+
+.card {
+    max-width: fit-content;
+    justify-content:center;
+    float: right;
+}

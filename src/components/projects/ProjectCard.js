@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-
+import "./ProjectCard.css"
+import { Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
 
 
 
@@ -8,11 +10,13 @@ export default class ProjectCard extends Component {
   render() {
 
     return (
+      <Card>
       <div key={this.props.project.id} className="card">
 
         <div className="card-body">
 
-            <h5 className="card-title">{this.props.project.projectName}</h5>
+            <CardTitle>{this.props.project.projectName}</CardTitle>
+
 
           <p>Due Date: {this.props.project.dueDate}</p>
 
@@ -22,8 +26,34 @@ export default class ProjectCard extends Component {
           >
             Delete
           </button>
+          <Button
+            onClick={() => this.props.deleteProject(this.props.project.id)}
+            className="delete-btn"
+          >
+            Edit
+          </Button>
+          <button
+            onClick={() => this.props.deleteProject(this.props.project.id)}
+            className="delete-btn"
+          >
+            tickets
+          </button>
+          <button
+            onClick={() => this.props.deleteProject(this.props.project.id)}
+            className="delete-btn"
+          >
+            task
+          </button>
+          <button
+            onClick={() => this.props.deleteProject(this.props.project.id)}
+            className="delete-btn"
+          >
+            images
+          </button>
         </div>
+
       </div>
+      </Card>
     );
   }
 }

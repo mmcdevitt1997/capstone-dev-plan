@@ -2,6 +2,7 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 import React, { Component } from "react";
 // import { addProject } from "./FetchCalls";
 import Project from "./projects/Project";
+import Task from "./tasks/Task";
 import ProjectForm from "./projects/ProjectForm"
 import ProjectHandler from "./apiHandler/ProjectHandler"
 import UserHandler from "./apiHandler/UserHandler"
@@ -58,7 +59,7 @@ class ApplicationViews extends Component {
           <Route
             path="/tasks"
             render={props => {
-            return <AutoComplete {...props} />
+            return <Task tasks={this.state.tasks} />
             }}
           />
           <Route

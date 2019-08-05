@@ -1,11 +1,21 @@
 import React, { Component } from "react";
-import  {getUserInSessionStorage} from "../../auth/UserManager"
-export default class ProjectForm extends Component {
+import {
+
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  DropdownToggle
+
+
+} from 'reactstrap'
+
+export default class TaskForm extends Component {
   state = {
     userId: "",
     taskName: "",
     taskDueDate: "",
-    phaseId: false
+    phase: "todo",
+    taskId: null,
   };
 
   handleFieldChange = evt => {
@@ -14,18 +24,47 @@ export default class ProjectForm extends Component {
     this.setState(stateToChange);
   };
 
+  handleDropDown = evt => {
+    const stateToChange = {}
+    if (evt.target.value === "currentTask"){
+      this.setState({phase: "currentTask"})
+    }else if (evt.target.value === "done"){
+      this.setState ({phase: "done"})
+    }else{(evt.target.value = "todo")}
+      this.setState ({phase: "todo"})
+
+      stateToChange[evt.target.id] = evt.target.value;
+      this.setState(stateToChange)
+
+    }
+
+    toggle() {
+      this.setState(prevState => ({
+        dropdownOpen: !prevState.dropdownOpen
+      }));
+    }
+    constructor(props) {
+      super(props);
+
+      this.toggle = this.toggle.bind(this);
+      this.state = {
+        dropdownOpen: false
+      };
+    }
+
+
   constructNewTask = evt => {
     evt.preventDefault();
     const task = {
       userId: sessionStorage.getItem("userId"),
-      taskName: this.state.projectName,
+      taskName: this.state.taskName,
       taskDueDate: this.state.taskDueDate,
-      projectId:"",
-      phaseId: false
-    };
+      phase: this.state.taskPhase,
+      taskId: null,
+    }
     this.props
       .addTask(task)
-      // .then(() => this.props.history.push("/projects"));
+      .then(() => this.props.history.push("/tasks"));
   };
   // the new task form
   render() {
@@ -47,16 +86,39 @@ export default class ProjectForm extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="taskDueDate"> Project Due Date</label>
+            <label htmlFor="taskDueDate">Task Due Date</label>
             <input
               type="date"
               required
               className="form-control"
               onChange={this.handleFieldChange}
-              id="dueDate"
+              id="taskDueDate"
               placeholder="Date of task"
             />
           </div>
+          <div>
+           <Dropdown>
+          <Dropdown
+          isOpen={this.state.dropdownOpen}
+          toggle={this.toggle}
+               name = "phase"
+              type="select"
+              required
+              className="form-control"
+              onChange={this.handleDropDown}
+              id="taskPhase"
+            />
+              <DropdownToggle caret>
+          Dropdown
+        </DropdownToggle>
+             <DropdownMenu>
+            <DropdownItem value ="todo">To Do</DropdownItem>
+            <DropdownItem value ="currentTask"> Current Task</DropdownItem>
+            <DropdownItem value = "done">Done</DropdownItem >
+            </DropdownMenu>
+            </Dropdown>
+            </div>
+
           <button
             type="submit"
             onClick={this.constructNewTask}

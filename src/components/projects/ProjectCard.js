@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./ProjectCard.css"
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Card,
+  CardTitle, Button } from 'reactstrap';
 
 
 

@@ -1,6 +1,5 @@
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router , withRouter } from "react-router-dom";
 import React, { Component } from "react";
-// import { addProject } from "./FetchCalls";
 import Project from "./projects/Project";
 import Task from "./tasks/Task";
 import ProjectForm from "./projects/ProjectForm"
@@ -8,7 +7,7 @@ import ProjectHandler from "./apiHandler/ProjectHandler"
 import UserHandler from "./apiHandler/UserHandler"
 import TaskHandler from "./apiHandler/TaskHandler"
 import TaskForm from "./tasks/TaskForm"
-import AutoComplete from "./autoComplete/AutoComplete";
+
 
 
 class ApplicationViews extends Component {
@@ -28,19 +27,19 @@ class ApplicationViews extends Component {
       .then (projects => {
         this.setState({projects:projects})
       })
-      .then(() => TaskHandler.getAll())
-      .then (tasks => {
+       .then(() => TaskHandler.getAll())
+       .then (tasks => {
         this.setState({tasks:tasks})
       })
 
   }
-  addTask = (task) => {
+  addTask = (task) =>
     TaskHandler.post(task)
       .then(() => TaskHandler.getAll())
-      .then(tasks => {
+      .then(tasks =>
         this.setState({ tasks:tasks })
-      })
-  }
+      )
+
   deleteTask = id => {
     TaskHandler.delete(id)
     .then(() => TaskHandler.getAll())
@@ -49,13 +48,25 @@ class ApplicationViews extends Component {
     })
   }
 
-  addProject = (project) => {
+  // put functions
+  updateTask = task =>
+    TaskHandler.put(task)
+      .then(() => TaskHandler.getAll())
+      .then(tasks => {
+        this.setState({
+          tasks: tasks
+        });
+      });
+
+
+  addProject = project =>
     ProjectHandler.post(project)
       .then(() => ProjectHandler.getAll())
-      .then(projects => {
+      .then(projects =>
         this.setState({ projects: projects })
-      })
-  }
+      )
+
+
   deleteProject = id => {
     ProjectHandler.delete(id)
     .then(() => ProjectHandler.getAll())
@@ -81,11 +92,11 @@ class ApplicationViews extends Component {
           exact
             path="/tasks"
             render={props => {
-            return <Task {...props} tasks={this.state.tasks}  />
+            return <Task {...props} tasks={this.state.tasks}  deleteTask={this.deleteTask} />
             }}
           />
           <Route
-          exact
+            exact
             path="/tasks/new"
             render={props => {
             return <TaskForm {...props} addTask={this.addTask} />
@@ -116,4 +127,4 @@ class ApplicationViews extends Component {
 
       }
 
-export default ApplicationViews;
+      export default withRouter(ApplicationViews);

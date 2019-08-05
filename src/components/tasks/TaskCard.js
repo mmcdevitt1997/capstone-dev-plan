@@ -20,6 +20,12 @@ export default class TaskCard extends Component {
           >
             Delete
           </button>
+          <button
+            onClick={() => this.props.deleteTask(this.props.task.id)}
+            className="delete-btn"
+          >
+            +
+          </button>
         </div>
       </div>
     );

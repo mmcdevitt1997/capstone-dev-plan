@@ -37,8 +37,9 @@ class NavBar extends Component {
                 onClick={() => {
                   this.toggle('1');
                 }}
+
               >
-                Profile
+
             </Button>
 
           <Nav tabs vertical pills className= "nav">
@@ -70,7 +71,7 @@ class NavBar extends Component {
             </NavItem>
             <NavItem className= "sidebar">
             <Link
-                to="/tasks"
+                to="/tasks/new"
                 className={classnames({active: this.state.activeTab === '4'})}
                 onClick={() => {
                   this.toggle('4');

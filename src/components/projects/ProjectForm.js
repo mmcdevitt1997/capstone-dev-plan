@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import  {getUserInSessionStorage} from "../../auth/UserManager"
+import Dropdown from "reactstrap/lib/Dropdown";
 // import AutoComplete from "../autoComplete/AutoComplete"
 export default class ProjectForm extends Component {
   state = {
     userId: "",
-    ProjectName: "",
-    dueDate: "",
+    projectName: "",
+    projectDueDate: "",
     PhaseId: false
   };
 
@@ -15,21 +15,21 @@ export default class ProjectForm extends Component {
     this.setState(stateToChange);
   };
 
+
   constructNewProject = evt => {
     evt.preventDefault();
     const project = {
       userId: sessionStorage.getItem("userId"),
       projectName: this.state.projectName,
-      dueDate: this.state.dueDate,
+      projectDueDate: this.state.projectDueDate,
       phaseId: false
     };
-    this.props
-      .addProject(project)
-      // .then(() => this.props.history.push("/projects"));
+    this.props.addProject(project).then(() => this.props.history.push("/projects"));
   };
   // the new task form
   render() {
-    console.log("i have rendered")
+
+
     return (
       <React.Fragment>
         <form className="projectForm">
@@ -37,7 +37,9 @@ export default class ProjectForm extends Component {
             <label htmlFor="projectName">
               Enter the name of your project repo
             </label>
-            {/* <AutoComplete {...this.props} /> */}
+            <Dropdown
+             list={this.state.location}
+            />
           </div>
           <div className="form-group">
             <label htmlFor="dueDate"> Project Due Date</label>
@@ -46,7 +48,7 @@ export default class ProjectForm extends Component {
               required
               className="form-control"
               onChange={this.handleFieldChange}
-              id="dueDate"
+              id="ProjectDueDate"
               placeholder="Date of task"
             />
           </div>

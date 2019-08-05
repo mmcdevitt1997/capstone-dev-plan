@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+
 import getUserGiHub from "../githubAPI/getUserGiHub";
-import getReposGithub from "../githubAPI/getReposGithub";
-import { login, loginWithGithub } from "../../auth/UserManager";
-import ProjectHandler from "../apiHandler/ProjectHandler";
+
+import {  loginWithGithub } from "../../auth/UserManager";
+
 import "./Login.css";
 
 export default class Login extends Component {
@@ -15,13 +15,13 @@ export default class Login extends Component {
         this.props.history.push("/");
       })
       .then(() => getUserGiHub.getUser())
-      .then(() =>
-        getReposGithub.getRepos().then(data => {
-          data.forEach(function(project) {
-            console.log(project.name);
-          });
-        })
-      );
+      // .then(() =>
+      //   getReposGithub.getRepos().then(data => {
+      //     data.forEach(function(project) {
+      //       project.name;
+      //     });
+      //   })
+
   };
 
   render() {

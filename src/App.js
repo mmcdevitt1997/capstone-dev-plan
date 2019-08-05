@@ -1,6 +1,6 @@
 // import React from 'react';
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, withRouter } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/nav/NavBar";
 import ApplicationViews from "./components/ApplicationViews";
@@ -33,8 +33,8 @@ class App extends Component {
             render={props => {
               return this.state.user ? (
                 <div>
-                  <NavBar />
-                  <ApplicationViews />
+                  <NavBar {...props} />
+                  <ApplicationViews {...props}/>
                 </div>
               ) : (
                 <Redirect to="/login" />
@@ -48,4 +48,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

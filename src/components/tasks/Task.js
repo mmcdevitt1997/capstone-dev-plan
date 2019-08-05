@@ -4,6 +4,11 @@ import TasksCurrent from "./TasksCurrent";
 import TaskPhaseDone from "./TasksPhaseDone";
 
 export default class Task extends Component {
+
+// let define vars
+
+
+
   render() {
     console.log(this.props.tasks);
 
@@ -29,7 +34,7 @@ export default class Task extends Component {
                 {this.props.tasks.filter(task => (
                   <div className="dashboard-div">
                     <TasksToDo
-                      task={task.props.phase === "todo"}
+                      task={task.props.phaseId === "1"}
                       {...this.props}
                     />
                   </div>
@@ -39,9 +44,11 @@ export default class Task extends Component {
             <div className="dashboard-div-box">
               <h3>Currently Working On</h3>
               {this.props.tasks.filter(task => (
-                <div className="dashboard-div">
+                <div className="dashboard-div">{
+
+                }
                   <TasksCurrent
-                    task={task.props.phase === "currentTask"}
+                    task={task.props.phaseId === "2"}
                     {...this.props}
                   />
                 </div>
@@ -54,7 +61,7 @@ export default class Task extends Component {
               {this.props.tasks.filter(task => (
                 <div className="dashboard-div">
                   <TaskPhaseDone
-                    task={task.props.phase === "done"}
+                    task={task.props.phaseId === "3"}
                     {...this.props}
                   />
                 </div>

@@ -6,7 +6,7 @@ export default class ProjectForm extends Component {
     userId: "",
     projectName: "",
     projectDueDate: "",
-    PhaseId: false
+    phaseId: ""
   };
 
   handleFieldChange = evt => {
@@ -22,7 +22,7 @@ export default class ProjectForm extends Component {
       userId: sessionStorage.getItem("userId"),
       projectName: this.state.projectName,
       projectDueDate: this.state.projectDueDate,
-      phaseId: false
+      phaseId: this.state.phaseId
     };
     this.props.addProject(project).then(() => this.props.history.push("/projects"));
   };
@@ -37,21 +37,44 @@ export default class ProjectForm extends Component {
             <label htmlFor="projectName">
               Enter the name of your project repo
             </label>
-            <Dropdown
-             list={this.state.location}
-            />
+            <select
+              name="projectName"
+              id="projectName"
+              onChange={this.handleFieldChange}
+              value = {this.state.projectName}
+            >
+              <option >Select Repo</option>
+              {this.props.gitRepos.map(gitRepo=> (
+                <option key={gitRepo.id} id={gitRepo.id} value={gitRepo.name}>
+                    {gitRepo.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="form-group">
-            <label htmlFor="dueDate"> Project Due Date</label>
+            <label htmlFor="projectDueDate"> Project Due Date</label>
             <input
               type="date"
               required
               className="form-control"
               onChange={this.handleFieldChange}
-              id="ProjectDueDate"
-              placeholder="Date of task"
+              id="projectDueDate"
+              placeholder="Date of project"
             />
           </div>
+          <select
+              name="phase"
+              id="phaseId"
+              onChange={this.handleFieldChange}
+              value = {this.state.phaseId}
+            >
+              <option value="phaseId">Select where you are in your project</option>
+              {this.props.phases.map(phase=> (
+                <option key={phase.id} id={phase.id} value={phase.id}>
+                  {phase.phaseName}
+                </option>
+              ))}
+            </select>
           <button
             type="submit"
             onClick={this.constructNewProject}

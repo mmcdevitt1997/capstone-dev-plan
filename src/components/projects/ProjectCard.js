@@ -18,7 +18,7 @@ export default class ProjectCard extends Component {
             <CardTitle>{this.props.project.projectName}</CardTitle>
 
 
-          <p>Due Date: {this.props.project.dueDate}</p>
+          <p>Due Date:{this.props.project.projectDueDate}</p>
 
           <button
             onClick={() => this.props.deleteProject(this.props.project.id)}

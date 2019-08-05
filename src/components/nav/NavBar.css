@@ -42,7 +42,8 @@
 }
 
 
-.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+
+/* .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
     width: 50px;
     height: 50px;
     line-height: 45px;
@@ -54,8 +55,8 @@
     margin-bottom: 10px;
     margin-top: 5px;
     background-color: green;
-}
-.btn-secondary {
+} */
+/* .btn-secondary {
     width: 50px;
     height: 50px;
     line-height: 45px;
@@ -66,4 +67,4 @@
     margin-left: 30px;
     margin-bottom: 10px;
     margin-top: 5px;
-}
+} */

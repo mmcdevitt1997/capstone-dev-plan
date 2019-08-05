@@ -5,6 +5,7 @@ import getUserGiHub from "../githubAPI/getUserGiHub";
 import {  loginWithGithub } from "../../auth/UserManager";
 
 import "./Login.css";
+import PhaseHandler from "../apiHandler/PhaseHandler";
 
 export default class Login extends Component {
   handleGithub = () => {
@@ -15,14 +16,11 @@ export default class Login extends Component {
         this.props.history.push("/");
       })
       .then(() => getUserGiHub.getUser())
-      // .then(() =>
-      //   getReposGithub.getRepos().then(data => {
-      //     data.forEach(function(project) {
-      //       project.name;
-      //     });
-      //   })
-
-  };
+      .then(() =>
+        PhaseHandler.getAll().then(data => {
+          data.forEach(function(project) {
+           console.log(project.phaseName)
+          })}))}
 
   render() {
     return (

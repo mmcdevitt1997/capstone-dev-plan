@@ -1,22 +1,30 @@
 import React, { Component } from "react";
-import {
-
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  DropdownToggle
-
-
-} from 'reactstrap'
 
 export default class TaskForm extends Component {
-  state = {
+  // constructing the for state of task
+      state = {
     userId: "",
     taskName: "",
     taskDueDate: "",
-    phase: "todo",
-    taskId: null,
+    phaseId: 1,
+    projectId:"",
+
   };
+
+  // toggles the drop down
+// toggle() {
+//   this.setState({
+//     dropdownOpen: !this.state.dropdownOpen,
+//     userId: "",
+//     taskName: "",
+//     taskDueDate: "",
+//     phaseId: "todo",
+//     projectId:"",
+
+//   });
+// }
+
+
 
   handleFieldChange = evt => {
     const stateToChange = {};
@@ -24,58 +32,40 @@ export default class TaskForm extends Component {
     this.setState(stateToChange);
   };
 
-  handleDropDown = evt => {
-    const stateToChange = {}
-    if (evt.target.value === "currentTask"){
-      this.setState({phase: "currentTask"})
-    }else if (evt.target.value === "done"){
-      this.setState ({phase: "done"})
-    }else{(evt.target.value = "todo")}
-      this.setState ({phase: "todo"})
+  // handleDropDown = evt => {
 
-      stateToChange[evt.target.id] = evt.target.value;
-      this.setState(stateToChange)
-
-    }
-
-    toggle() {
-      this.setState(prevState => ({
-        dropdownOpen: !prevState.dropdownOpen
-      }));
-    }
-    constructor(props) {
-      super(props);
-
-      this.toggle = this.toggle.bind(this);
-      this.state = {
-        dropdownOpen: false
-      };
-    }
+  //   const stateToChange = {};
+  //   if (evt.target.value === "currentTask") {
+  //     this.setState({ phase: "currentTask" });
+  //   } else if (evt.target.value === "done") {
+  //     this.setState({ phase: "done" });
+  //   } else {
+  //     evt.target.value = "todo";
+  //   }
+  //   this.setState({ phase: "todo" });
+  //   stateToChange[evt.target.id] = evt.target.value;
+  //   this.setState(stateToChange);
+  // };
 
 
   constructNewTask = evt => {
     evt.preventDefault();
     const task = {
+
       userId: sessionStorage.getItem("userId"),
       taskName: this.state.taskName,
       taskDueDate: this.state.taskDueDate,
-      phase: this.state.taskPhase,
-      taskId: null,
-    }
-    this.props
-      .addTask(task)
-      .then(() => this.props.history.push("/tasks"));
+      phaseId: this.state.phaseId,
+    };
+    this.props.addTask(task).then(() => this.props.history.push("/tasks"));
   };
   // the new task form
   render() {
-
     return (
       <React.Fragment>
         <form className="taskForm">
           <div className="form-group">
-            <label htmlFor="taskName">
-              task
-            </label>
+            <label htmlFor="taskName">task</label>
             <input
               type="text"
               required
@@ -96,37 +86,49 @@ export default class TaskForm extends Component {
               placeholder="Date of task"
             />
           </div>
-          <div>
-           <Dropdown>
-          <Dropdown
-          isOpen={this.state.dropdownOpen}
-          toggle={this.toggle}
-               name = "phase"
-              type="select"
-              required
-              className="form-control"
-              onChange={this.handleDropDown}
-              id="taskPhase"
-            />
-              <DropdownToggle caret>
-          Dropdown
-        </DropdownToggle>
-             <DropdownMenu>
-            <DropdownItem value ="todo">To Do</DropdownItem>
-            <DropdownItem value ="currentTask"> Current Task</DropdownItem>
-            <DropdownItem value = "done">Done</DropdownItem >
-            </DropdownMenu>
-            </Dropdown>
-            </div>
-
-          <button
-            type="submit"
-            onClick={this.constructNewTask}
-            className="btn btn-primary"
-          >
-            Submit
-          </button>
+          <select
+              name="phase"
+              id="phaseId"
+              onChange={this.handleFieldChange}
+              value = {this.state.phaseId}
+            >
+              <option value="phaseId">Select where you are in your task</option>
+              {this.props.phases.map(phase=> (
+                <option key={phase.id} id={phase.id} value={phase.id}>
+                  {phase.phaseName}
+                </option>
+              ))}
+            </select>
         </form>
+        {/* <Container>
+          <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+
+            <UncontrolledDropdown>
+              <DropdownToggle caret>
+              {this.state.phase}
+              </DropdownToggle>
+              <DropdownMenu onChange={this.handleFieldChange} id="phase">
+                <DropdownItem value="todo">
+                  To Do
+                </DropdownItem>
+                <DropdownItem   value="currentTask">
+                  Current Task
+                </DropdownItem>
+                <DropdownItem value="done">
+                  Done
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+            </ButtonDropdown> */}
+        {/* </Container> */}
+
+        <button
+          type="submit"
+          onClick={this.constructNewTask}
+          className="btn btn-primary"
+        >
+          Submit
+        </button>
       </React.Fragment>
     );
   }

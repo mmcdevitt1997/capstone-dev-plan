@@ -21,8 +21,8 @@ export default class TaskCard extends Component {
             Delete
           </button>
           <button
-            onClick={() => this.props.deleteTask(this.props.task.id)}
-            className="delete-btn"
+            onClick={() => this.props.history.push("/tasks/subtask")}
+            className="btn"
           >
             +
           </button>

@@ -7,6 +7,8 @@ import ProjectHandler from "./apiHandler/ProjectHandler"
 import UserHandler from "./apiHandler/UserHandler"
 import TaskHandler from "./apiHandler/TaskHandler"
 import TaskForm from "./tasks/TaskForm"
+import PhaseHandler from "./apiHandler/PhaseHandler"
+import getReposGithub from "./githubAPI/getReposGithub"
 
 
 
@@ -14,11 +16,13 @@ class ApplicationViews extends Component {
   state = {
     users: [],
     projects: [],
+    phases:[],
     tasks: [],
     teams: [],
     tickets: [],
     teamUsers: [],
-    suggestions: []
+    gitRepos: []
+
   };
   componentDidMount() {
     UserHandler.getAll()
@@ -31,8 +35,16 @@ class ApplicationViews extends Component {
        .then (tasks => {
         this.setState({tasks:tasks})
       })
-
+      .then(() => PhaseHandler.getAll())
+       .then (phases => {
+        this.setState({phases:phases})
+      })
+      .then(() => getReposGithub.getRepos())
+      .then (gitRepos => {
+       this.setState({gitRepos:gitRepos})
+     })
   }
+
   addTask = (task) =>
     TaskHandler.post(task)
       .then(() => TaskHandler.getAll())
@@ -99,7 +111,7 @@ class ApplicationViews extends Component {
             exact
             path="/tasks/new"
             render={props => {
-            return <TaskForm {...props} addTask={this.addTask} />
+            return <TaskForm phases={this.state.phases} {...props} addTask={this.addTask} />
             }}
           />
           <Route
@@ -107,7 +119,7 @@ class ApplicationViews extends Component {
             path="/projects/new"
             render={props => {
               return (
-                <ProjectForm {...props} addProject={this.addProject} />
+                <ProjectForm {...props} gitRepos={this.state.gitRepos}  phases={this.state.phases} addProject={this.addProject} />
               );
             }}
           />

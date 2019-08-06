@@ -33,8 +33,9 @@ export default class ProjectCard extends Component {
             Edit
           </Button>
           <button
-            onClick={() => this.props.deleteProject(this.props.project.id)}
-            className="delete-btn"
+            onClick={() => this.props.push (`/projects${this.props.project.id}/tickets`)
+            }
+            className="btn"
           >
             tickets
           </button>

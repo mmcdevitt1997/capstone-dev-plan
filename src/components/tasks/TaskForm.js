@@ -11,18 +11,7 @@ export default class TaskForm extends Component {
 
   };
 
-  // toggles the drop down
-// toggle() {
-//   this.setState({
-//     dropdownOpen: !this.state.dropdownOpen,
-//     userId: "",
-//     taskName: "",
-//     taskDueDate: "",
-//     phaseId: "todo",
-//     projectId:"",
 
-//   });
-// }
 
 
 
@@ -31,21 +20,6 @@ export default class TaskForm extends Component {
     stateToChange[evt.target.id] = evt.target.value;
     this.setState(stateToChange);
   };
-
-  // handleDropDown = evt => {
-
-  //   const stateToChange = {};
-  //   if (evt.target.value === "currentTask") {
-  //     this.setState({ phase: "currentTask" });
-  //   } else if (evt.target.value === "done") {
-  //     this.setState({ phase: "done" });
-  //   } else {
-  //     evt.target.value = "todo";
-  //   }
-  //   this.setState({ phase: "todo" });
-  //   stateToChange[evt.target.id] = evt.target.value;
-  //   this.setState(stateToChange);
-  // };
 
 
   constructNewTask = evt => {
@@ -56,6 +30,7 @@ export default class TaskForm extends Component {
       taskName: this.state.taskName,
       taskDueDate: this.state.taskDueDate,
       phaseId: this.state.phaseId,
+      projectId: this.state.projectId
     };
     this.props.addTask(task).then(() => this.props.history.push("/tasks"));
   };
@@ -87,6 +62,19 @@ export default class TaskForm extends Component {
             />
           </div>
           <select
+              name="projectId"
+              id="projectId"
+              onChange={this.handleFieldChange}
+              value = {this.state.projectId}
+            >
+              <option value="projectId">Select Project </option>
+              {this.props.projects.map(project=> (
+                <option key={project.id} id={project.id} value={project.id}>
+                  {project.projectName}
+                </option>
+              ))}
+            </select>
+          <select
               name="phase"
               id="phaseId"
               onChange={this.handleFieldChange}
@@ -99,28 +87,9 @@ export default class TaskForm extends Component {
                 </option>
               ))}
             </select>
-        </form>
-        {/* <Container>
-          <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 
-            <UncontrolledDropdown>
-              <DropdownToggle caret>
-              {this.state.phase}
-              </DropdownToggle>
-              <DropdownMenu onChange={this.handleFieldChange} id="phase">
-                <DropdownItem value="todo">
-                  To Do
-                </DropdownItem>
-                <DropdownItem   value="currentTask">
-                  Current Task
-                </DropdownItem>
-                <DropdownItem value="done">
-                  Done
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-            </ButtonDropdown> */}
-        {/* </Container> */}
+        </form>
+
 
         <button
           type="submit"

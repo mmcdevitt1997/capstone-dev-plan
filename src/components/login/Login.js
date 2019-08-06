@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import getUserGiHub from "../githubAPI/getUserGiHub";
+import getUserGiHub from "../githubAPI/getUserGitHub";
 
 import {  loginWithGithub } from "../../auth/UserManager";
 

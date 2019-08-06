@@ -2,16 +2,53 @@ import React, { Component } from "react";
 import TasksToDo from "./TaskToDo";
 import TasksCurrent from "./TasksCurrent";
 import TaskPhaseDone from "./TasksPhaseDone";
+import TaskCard from "./TaskCard"
 
 export default class Task extends Component {
 
-// let define vars
+
+filterToDo = (taskFilter) => {
+  let filterToDo = this.state.task
+  filterToDo = filterToDo.filter((task)=> {
+   return task.phaseId === "1"
+  }).map(function (task) {
+    return task
+
+})
+}
+
+filterCurrent = (taskFilter) => {
+  let filterCurrent = this.state.task
+  filterCurrent = filterCurrent.filter((task)=> {
+    return task.phaseId === "2"
+  })
+}
+filterDone = (taskFilter) => {
+  let arrayDone = []
+  let filterDone = this.state.task
+  filterDone = filterDone.filter((task)=> {
+    if (task.phaseId === "3") {
+      arrayDone.push(task)
+    }
+  })
+}
+
+
+filterTask = () => {
+var nonFriends = []
+let friends = [];
+this.props.list.forEach(function (user) {
+  if (user.friend) {
+    friends.push(user);
+  } else {
+    nonFriends.push(user);
+  }
+});
+}
 
 
 
   render() {
-    console.log(this.props.tasks);
-
     return (
       <div>
         <h1 className="title">Task Page</h1>
@@ -25,7 +62,23 @@ export default class Task extends Component {
           >
             Add Task
           </button>
-        </div>
+
+          <section className="tasks">
+                    {
+
+                        this.props.tasks.map(task =>
+                                <div key={task.id}  >
+                                    <TaskCard key={task.id} task={task} {...this.props} />
+                                </div>
+                        )
+                    }
+                </section>
+            </div>
+            </div>
+    )
+                  }
+
+/* /* </div>
         <div className="parent-Dash-Div">
           <div className="dashboard-row">
             <div className="dashboard-div-box">
@@ -34,7 +87,7 @@ export default class Task extends Component {
                 {this.props.tasks.filter(task => (
                   <div className="dashboard-div">
                     <TasksToDo
-                      task={task.props.phaseId === "1"}
+                      task={this.state.filterToDo}
                       {...this.props}
                     />
                   </div>
@@ -48,7 +101,7 @@ export default class Task extends Component {
 
                 }
                   <TasksCurrent
-                    task={task.props.phaseId === "2"}
+                    task={this.state.filterDone }
                     {...this.props}
                   />
                 </div>
@@ -70,6 +123,5 @@ export default class Task extends Component {
           </div>
         </div>
       </div>
-    );
-  }
-}
+     */
+              }

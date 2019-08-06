@@ -9,6 +9,8 @@ import TaskHandler from "./apiHandler/TaskHandler"
 import TaskForm from "./tasks/TaskForm"
 import PhaseHandler from "./apiHandler/PhaseHandler"
 import getReposGithub from "./githubAPI/getReposGithub"
+import TaskEditCard from "./tasks/TaskEditCard"
+import SubTaskHandler from "./apiHandler/SubTaskHandler"
 
 
 
@@ -21,7 +23,8 @@ class ApplicationViews extends Component {
     teams: [],
     tickets: [],
     teamUsers: [],
-    gitRepos: []
+    gitRepos: [],
+    subTask: []
 
   };
   componentDidMount() {
@@ -43,7 +46,21 @@ class ApplicationViews extends Component {
       .then (gitRepos => {
        this.setState({gitRepos:gitRepos})
      })
+     .then(() => SubTaskHandler.getRepos())
+      .then (subTasks => {
+       this.setState({subTasks:subTasks})
+     })
   }
+
+  updateProject = editProject=>
+    ProjectHandler.put(editProject)
+      .then(() => Project.getAll())
+      .then(projects =>
+        this.setState({
+           projects: projects
+        })
+      )
+
 
   addTask = (task) =>
     TaskHandler.post(task)
@@ -60,7 +77,6 @@ class ApplicationViews extends Component {
     })
   }
 
-  // put functions
   updateTask = task =>
     TaskHandler.put(task)
       .then(() => TaskHandler.getAll())
@@ -111,7 +127,7 @@ class ApplicationViews extends Component {
             exact
             path="/tasks/new"
             render={props => {
-            return <TaskForm phases={this.state.phases} {...props} addTask={this.addTask} />
+            return <TaskForm phases={this.state.phases} {...props} addTask={this.addTask} projects={this.state.projects}/>
             }}
           />
           <Route
@@ -119,7 +135,7 @@ class ApplicationViews extends Component {
             path="/projects/new"
             render={props => {
               return (
-                <ProjectForm {...props} gitRepos={this.state.gitRepos}  phases={this.state.phases} addProject={this.addProject} />
+                <ProjectForm {...props} gitRepos={this.state.gitRepos} phases={this.state.phases} addProject={this.addProject} />
               );
             }}
           />
@@ -127,10 +143,32 @@ class ApplicationViews extends Component {
             exact
             path="/projects"
             render={props => {
-              console.log(this.state.projects)
               return <Project {...props} projects={this.state.projects} deleteProject={this.deleteProject} />
             }}
           />
+          {/* <Route
+            exact
+            path="/projects/:id(/d+)/tickets"
+            render={props => {
+
+              return <Ticket {...props} projects={this.state.projects} tickets={this.state.tickets} />
+            }} */}
+
+          {/* <Route
+            exact
+            path="/projects/:id(/d+)/edit"
+            render={props => {
+              return <ProjectEdit {...props} projects={this.state.projects}  />
+            }}
+          /> */}
+          <Route
+            exact
+            path="/tasks/:id(\d+)/edit"
+            render={props => {
+              return <TaskEditCard {...props} tasks={this.tasks} phases={this.phases} projects={this.projects} updateTask={this.updateTask}  />
+            }}
+          />
+
 
         </div>
       </React.Fragment>

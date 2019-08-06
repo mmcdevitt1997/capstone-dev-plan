@@ -11,10 +11,10 @@ getAll: {
     value: function (){
         return ApiHandler.all("tasks").then(taskData => {
            let test = ""
-        console.log(taskData)
+
               Object.keys(taskData).forEach(function(key){
               taskData[key].id = key
-              console.log(taskData)
+
               test = Object.values(taskData)
             })
             return test

@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import React, { Component } from "react"
 import {  withRouter, Link,} from "react-router-dom"
 import "./NavBar.css"
-import {  Nav, NavItem, NavLink, Row, Col, Button} from 'reactstrap';
+import { Nav, NavItem, NavLink, Button, Col, Row} from 'reactstrap';
 
 import classnames from 'classnames';
 
@@ -30,16 +30,18 @@ class NavBar extends Component {
   render() {
 
     return (
+
       <Row className= "wrapper">
         <Col xs="3" sm="3" md="2.5" className= "column">
-        <Button  className= "btn btn-default btn-circle  text-center"
+        {/* <Button  className= "btn btn-default btn-circle  text-center"
                 className={classnames({active: this.state.activeTab === '1'})}
                 onClick={() => {
                   this.toggle('1');
                 }}
+
               >
-                Profile
-            </Button>
+
+            </Button> */}
 
           <Nav tabs vertical pills className= "nav">
 
@@ -68,9 +70,9 @@ class NavBar extends Component {
                 Projects
               </Link>
             </NavItem>
-            <NavItem className= "sidebar">
+            <NavItem className= "Navbar">
             <Link
-                to="/tasks/new"
+                to="/tasks"
                 className={classnames({active: this.state.activeTab === '4'})}
                 onClick={() => {
                   this.toggle('4');
@@ -78,6 +80,18 @@ class NavBar extends Component {
               >
                Tasks
                </Link>
+            </NavItem>
+            <NavItem>
+              <Link
+              to="/login"
+                className={classnames({active: this.state.activeTab === '5'})}
+                onClick={() => {
+                  this.toggle('5');
+                }}
+              >
+                Logout
+              </Link>
+
             </NavItem>
 
           </Nav>

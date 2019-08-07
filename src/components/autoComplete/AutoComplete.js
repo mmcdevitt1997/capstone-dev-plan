@@ -12,8 +12,8 @@ export default class AutoComplete extends React.Component {
 
     constructor(props) {
         super(props);
-        this.projectNames = gitRepoNames()
-        this.state = {
+       this.projectNames = gitRepoNames()
+       this.state = {
             suggestions: [],
             text: ''
         }

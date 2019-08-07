@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import  {getUserInSessionStorage} from "../../auth/UserManager"
+import Dropdown from "reactstrap/lib/Dropdown";
 // import AutoComplete from "../autoComplete/AutoComplete"
 export default class ProjectForm extends Component {
   state = {
     userId: "",
-    ProjectName: "",
-    dueDate: "",
-    PhaseId: false
+    projectName: "",
+    projectDueDate: "",
+    phaseName: ""
   };
 
   handleFieldChange = evt => {
@@ -15,41 +15,64 @@ export default class ProjectForm extends Component {
     this.setState(stateToChange);
   };
 
+
   constructNewProject = evt => {
     evt.preventDefault();
     const project = {
       userId: sessionStorage.getItem("userId"),
       projectName: this.state.projectName,
-      dueDate: this.state.dueDate,
-      phaseId: false
+      projectDueDate: this.state.projectDueDate,
+      phaseName: this.state.phaseName
     };
-    this.props
-      .addProject(project)
-      // .then(() => this.props.history.push("/projects"));
+    this.props.addProject(project).then(() => this.props.history.push("/projects"));
   };
   // the new task form
   render() {
-    console.log("i have rendered")
     return (
       <React.Fragment>
-        <form className="projectForm">
-          <div className="form-group">
+        <form className="">
+          <div className="">
             <label htmlFor="projectName">
               Enter the name of your project repo
             </label>
-            {/* <AutoComplete {...this.props} /> */}
+            <select
+              name="projectName"
+              id="projectName"
+              onChange={this.handleFieldChange}
+              value = {this.state.projectName}
+            >
+              <option >Select Repo</option>
+              {this.props.gitRepos.map(gitRepo=> (
+                <option key={gitRepo.id} id={gitRepo.id} value={gitRepo.name}>
+                    {gitRepo.name}
+                </option>
+              ))}
+            </select>
           </div>
-          <div className="form-group">
-            <label htmlFor="dueDate"> Project Due Date</label>
+          <div className="">
+            <label htmlFor="projectDueDate"> Project Due Date</label>
             <input
               type="date"
               required
-              className="form-control"
+              className=""
               onChange={this.handleFieldChange}
-              id="dueDate"
-              placeholder="Date of task"
+              id="projectDueDate"
+              placeholder="Date of project"
             />
           </div>
+          <select
+              name="phase"
+              id="phaseName"
+              onChange={this.handleFieldChange}
+              value = {this.state.phaseName}
+            >
+              <option value="phaseName">Select where you are in your project</option>
+              {this.props.phases.map(phase=> (
+                <option key={phase.id} id={phase.id} value={phase.phaseName}>
+                  {phase.phaseName}
+                </option>
+              ))}
+            </select>
           <button
             type="submit"
             onClick={this.constructNewProject}

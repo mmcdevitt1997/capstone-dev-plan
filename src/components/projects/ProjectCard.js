@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./ProjectCard.css"
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Card,
+  CardTitle, Button } from 'reactstrap';
 
 
 
@@ -16,9 +16,9 @@ export default class ProjectCard extends Component {
         <div className="card-body">
 
             <CardTitle>{this.props.project.projectName}</CardTitle>
+          <p>Due Date: {this.props.project.projectDueDate}</p>
+          <p>Phase: {this.props.project.phaseName}</p>
 
-
-          <p>Due Date: {this.props.project.dueDate}</p>
 
           <button
             onClick={() => this.props.deleteProject(this.props.project.id)}
@@ -28,27 +28,22 @@ export default class ProjectCard extends Component {
           </button>
           <Button
             onClick={() => this.props.deleteProject(this.props.project.id)}
-            className="delete-btn"
+            className="btn"
           >
             Edit
           </Button>
           <button
-            onClick={() => this.props.deleteProject(this.props.project.id)}
-            className="delete-btn"
+            onClick={() => this.props.history.push(`/projects/${this.props.project.id}/tickets`)
+            }
+            className="btn"
           >
             tickets
           </button>
           <button
             onClick={() => this.props.deleteProject(this.props.project.id)}
-            className="delete-btn"
+            className="btn"
           >
-            task
-          </button>
-          <button
-            onClick={() => this.props.deleteProject(this.props.project.id)}
-            className="delete-btn"
-          >
-            images
+            Task Page
           </button>
         </div>
 

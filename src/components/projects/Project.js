@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import ProjectCard from "./ProjectCard"
+import "./ProjectCard.css";
 
 export default class Project extends Component {
 // Filter to make sure that the tasks are the current user

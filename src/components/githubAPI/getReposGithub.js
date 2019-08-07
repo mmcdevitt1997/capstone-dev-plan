@@ -1,4 +1,4 @@
-import getUserGiHub from './getUserGiHub'
+import getUserGiHub from './getUserGitHub'
 import { clientId, clientSecret } from '../../config/GithubAPIKeys'
 const gitHubApi = "https://api.github.com/"
 

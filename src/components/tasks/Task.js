@@ -1,35 +1,71 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+
 import TaskCard from "./TaskCard"
 
-export default class Project extends Component {
-// Filter to make sure that the tasks are the current user
+export default class Task extends Component {
 
-    render() {console.log(this.props.projects)
+  render() {
+    return (
+      <div>
+      <div className="AddTaskButton">
+      <button type="button"
+          className="btn btn-success"
+          onClick={() => {
+              this.props.history.push("/tasks/new")
+          }
+          }>Add Task</button>
+         </div>
 
-        return (
+        <div className="">
+          <div className="">
+            <h3>To Do</h3>
+            <div className="">
+              <div className="">
+                {
 
-            <div>
-                <h1 className="title">Task Page</h1>
-                <div className="AddTaskButton">
-                    <button type="button"
-                        className="btn btn-success"
-                        onClick={() => {
-                            this.props.history.push("/tasks/new")
-                        }
-                        }>Add Projects</button>
-                </div>
-
-                <section className="tasks">
-                    {
-
-                        this.props.tasks.map(task =>
-                                <div key={task.id}  >
-                                    <TaskCard key={task.id} task={task} {...this.props} />
-                                </div>
-                        )
-                    }
-                </section>
+                  this.props.tasks.filter(tasks => tasks.phaseName === "To Do").map(taskFilter =>
+                    <div key={taskFilter.id} >
+                      <TaskCard key={taskFilter.id} task={taskFilter}phases={this.phases} {...this.props} />
+                    </div>
+                  )
+                }
+              </div>
+              </div>
+          </div>
+          <div className="">
+            <h3>Currently Working On</h3>
+            <div className="">
+              {
+// .filter(tasks=>tasks.phaseName === "Current Task")
+                this.props.tasks.filter(tasks=>tasks.phaseName === "Current Task").map(taskFilter =>
+                  <div key={taskFilter.id}  >
+                    <TaskCard key={taskFilter.id} task={taskFilter} phases={this.phases} {...this.props} />
+                  </div>
+                )
+              }
             </div>
-        )
-    }
+
+            </div>
+        </div>
+        <div className="">
+          <h3>Finished Tasks </h3>
+          <div className="">
+
+            <div className="">
+              {
+                // filter(tasks =>tasks.phaseName === "Done")
+                this.props.tasks.filter(tasks =>tasks.phaseName === "Done").map(taskFilter =>
+                  <div key={taskFilter.id}>
+                    <TaskCard key={taskFilter.id} task={taskFilter} phases={this.phases} {...this.props} />
+                  </div>
+                )
+              }
+            </div>
+
+            </div>
+        </div>
+        </div>
+
+    )
+  }
 }

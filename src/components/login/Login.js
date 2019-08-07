@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import getUserGiHub from "../githubAPI/getUserGiHub";
-import getReposGithub from "../githubAPI/getReposGithub";
-import { login, loginWithGithub } from "../../auth/UserManager";
-import ProjectHandler from "../apiHandler/ProjectHandler";
+
+import getUserGiHub from "../githubAPI/getUserGitHub";
+
+import {  loginWithGithub } from "../../auth/UserManager";
+
 import "./Login.css";
+import PhaseHandler from "../apiHandler/PhaseHandler";
 
 export default class Login extends Component {
   handleGithub = () => {
@@ -16,13 +17,10 @@ export default class Login extends Component {
       })
       .then(() => getUserGiHub.getUser())
       .then(() =>
-        getReposGithub.getRepos().then(data => {
+        PhaseHandler.getAll().then(data => {
           data.forEach(function(project) {
-            console.log(project.name);
-          });
-        })
-      );
-  };
+           console.log(project.phaseName)
+          })}))}
 
   render() {
     return (

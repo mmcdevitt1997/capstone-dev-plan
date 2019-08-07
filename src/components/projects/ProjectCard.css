@@ -8,3 +8,10 @@ div.card-body{
     justify-content:center;
     float: right;
 }
+.form {
+    margin-left: 300px;
+    max-width: fit-content;
+}
+.div {
+    margin-left: 300px;
+}

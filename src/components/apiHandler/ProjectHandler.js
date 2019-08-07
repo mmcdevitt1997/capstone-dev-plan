@@ -5,22 +5,24 @@ export default Object.create(ApiHandler, {
   get: {
      value: function (id) {
         return  ApiHandler.get("projects", id)
+
       }
   },
 getAll: {
     value: function (){
-        return ApiHandler.all("projects").then(projectData => {
-           let test = ""
-        console.log(projectData)
+        return ApiHandler.all("projects")
+        .then(projectData => {
+           let projectArr = ""
               Object.keys(projectData).forEach(function(key){
               projectData[key].id = key
-              console.log(projectData)
-              test = Object.values(projectData)
+              projectArr = Object.values(projectData)
             })
-            return test
+            return projectArr
     }
+
         )
 }
+
 },
 delete: {
     value: function(id){

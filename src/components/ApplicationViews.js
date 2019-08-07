@@ -23,7 +23,6 @@ class ApplicationViews extends Component {
     phases:[],
     tasks: [],
     teams: [],
-    tickets: [],
     teamUsers: [],
     gitRepos: [],
     subTask: []
@@ -122,7 +121,7 @@ class ApplicationViews extends Component {
            exact
             path="/tasks"
             render={props => {
-            return <Task {...props} tasks={this.state.tasks}  deleteTask={this.deleteTask} />
+            return <Task {...props} tasks={this.state.tasks} phases={this.state.phases} deleteTask={this.deleteTask}  updateTask ={this.updateTask} />
             }}
           />
           <Route
@@ -153,7 +152,7 @@ class ApplicationViews extends Component {
             path="/projects/:id/tickets"
             render={props => {
 
-              return <Ticket {...props} projects={this.state.projects} tickets={this.state.tickets} />
+              return <Ticket {...props} projects={this.state.projects} />
             }}
             />
             <Route

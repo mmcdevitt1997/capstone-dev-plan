@@ -25,7 +25,7 @@ export default class TaskEditCard extends Component{
           userId: sessionStorage.getItem("userId"),
           taskName: this.state.taskName,
           taskDueDate: this.state.taskDueDate,
-          phaseName: this.state.phaseId,
+          phaseName: this.state.phaseName,
           projectName: this.state.projectName
         };
         this.props.updateTask(taskEdit).then(() => this.props.history.push("/tasks"));
@@ -33,7 +33,6 @@ export default class TaskEditCard extends Component{
         componentDidMount() {
             TaskHandler.get(this.props.match.params.id)
              .then(task => {
-               console.log(task)
                this.setState({
                  taskName: task.taskName,
                  taskDueDate: task.taskDueDate,

@@ -25,7 +25,7 @@ export default class Task extends Component {
 
                   this.props.tasks.filter(tasks => tasks.phaseName === "To Do").map(taskFilter =>
                     <div key={taskFilter.id} >
-                      <TaskCard key={taskFilter.id} task={taskFilter}phases={this.phases} {...this.props} />
+                      <TaskCard key={taskFilter.id} task={taskFilter} phases={this.phases} {...this.props} />
                     </div>
                   )
                 }
@@ -36,7 +36,7 @@ export default class Task extends Component {
             <h3>Currently Working On</h3>
             <div className="">
               {
-// .filter(tasks=>tasks.phaseName === "Current Task")
+
                 this.props.tasks.filter(tasks=>tasks.phaseName === "Current Task").map(taskFilter =>
                   <div key={taskFilter.id}  >
                     <TaskCard key={taskFilter.id} task={taskFilter} phases={this.phases} {...this.props} />

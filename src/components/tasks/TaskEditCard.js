@@ -11,7 +11,6 @@ export default class TaskEditCard extends Component{
 
       };
 
-
       handleFieldChange = evt => {
         const stateToChange = {};
         stateToChange[evt.target.id] = evt.target.value;
@@ -33,8 +32,9 @@ export default class TaskEditCard extends Component{
         componentDidMount() {
             TaskHandler.get(this.props.match.params.id)
              .then(task => {
+               console.log(task)
                this.setState({
-                 taskName: task.taskName,
+                taskName: task.taskName,
                  taskDueDate: task.taskDueDate,
                  phaseName: task.phaseName,
                  projectName: task.projectName
@@ -47,8 +47,8 @@ export default class TaskEditCard extends Component{
 
         return (
           <React.Fragment>
-            <form className="taskForm">
-              <div className="form-group">
+            <form className="">
+              <div className="">
                 <label htmlFor="taskName">task</label>
                 <input
                   type="text"
@@ -60,12 +60,12 @@ export default class TaskEditCard extends Component{
                   value = {this.state.taskName}
                 />
               </div>
-              <div className="form-group">
+              <div className="">
                 <label htmlFor="taskDueDate">Task Due Date</label>
                 <input
                   type="date"
                   required
-                  className="form-control"
+                  className=""
                   onChange={this.handleFieldChange}
                   id="taskDueDate"
                   placeholder="Date of task"
@@ -73,12 +73,12 @@ export default class TaskEditCard extends Component{
                 />
               </div>
               <select
-                  name="projectId"
+                  name=""
                   id="projectName"
                   onChange={this.handleFieldChange}
                   value = {this.state.projectId}
                 >
-                  <option value="projectName">Select Project </option>
+                  <option value="">Select Project </option>
                   {this.props.projects.map(project=> (
                     <option key={project.id} id={project.id} value={project.projectName}>
                       {project.projectName}

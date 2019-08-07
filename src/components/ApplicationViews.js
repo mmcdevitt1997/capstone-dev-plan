@@ -33,7 +33,7 @@ class ApplicationViews extends Component {
       .then(users => this.setState({ users: users }))
       .then(() => ProjectHandler.getAll())
       .then (projects => {
-        this.setState({projects:projects})
+        this.setState({projects: projects})
       })
        .then(() => TaskHandler.getAll())
        .then (tasks => {
@@ -104,6 +104,8 @@ class ApplicationViews extends Component {
     })
   }
 
+
+
   isAuthenticated = () => sessionStorage.getItem("id") !== null;
 
   render() {
@@ -144,7 +146,7 @@ class ApplicationViews extends Component {
             exact
             path="/projects"
             render={props => {
-              return <Project {...props} projects={this.state.projects} deleteProject={this.deleteProject} />
+              return <Project {...props} projects={this.state.projects} deleteProject={this.deleteProject} updateProject={this.updateProject} phases={this.state.phases} />
             }}
           />
           <Route
@@ -165,7 +167,7 @@ class ApplicationViews extends Component {
 
            <Route
              exact
-             path="/tasks/:taskId/edit"
+             path="/tasks/:id/edit"
             render={props => {
                return <TaskEditCard {...props} tasks={this.state.tasks} phases={this.state.phases} projects={this.state.projects} updateTask={this.updateTask}  />
              }}

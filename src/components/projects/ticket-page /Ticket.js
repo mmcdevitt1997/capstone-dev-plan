@@ -23,7 +23,7 @@ export default class Ticket extends Component {
     render() {
         return (
             <div>
-                <h1>Display tickets</h1>
+                <h1>Project Tickets</h1>
                 {
                 <TicketDisplay key={this.state.tickets.id} tickets={this.state.tickets} {...this.props} />
                 }

@@ -6,7 +6,7 @@ import "./ProjectCard.css";
 export default class Project extends Component {
 // Filter to make sure that the tasks are the current user
 
-    render() {console.log(this.props.projects)
+    render() {
 
         return (
 
@@ -26,7 +26,7 @@ export default class Project extends Component {
 
                         this.props.projects.map(project =>
                                 <div key={project.id}  >
-                                    <ProjectCard key={project.id} project={project} {...this.props} />
+                                    <ProjectCard key={project.id} project={project} phases={this.phases} {...this.props} />
                                 </div>
                         )
                     }

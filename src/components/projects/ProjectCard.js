@@ -3,10 +3,12 @@ import "./ProjectCard.css"
 import { Card,
   CardTitle, Button } from 'reactstrap';
 
-
-
 export default class ProjectCard extends Component {
-
+   handlePhaseChange = event => {
+    event.preventDefault();
+    this.props.project.phaseName = event.target.value;
+    this.props.updateProject(this.props.projects);
+  };
   render() {
 
     return (
@@ -17,7 +19,19 @@ export default class ProjectCard extends Component {
 
             <CardTitle>{this.props.project.projectName}</CardTitle>
           <p>Due Date: {this.props.project.projectDueDate}</p>
-          <p>Phase: {this.props.project.phaseName}</p>
+          <select
+            name="phase"
+            id="phaseName"
+            onChange={this.handlePhaseChange}
+            value={this.phaseName}
+          >
+            <option value="phaseName">{this.props.project.phaseName}</option>
+            {this.props.phases.map(phase => (
+              <option key={phase.id} id={phase.id} value={phase.phaseName}>
+                {phase.phaseName}
+              </option>
+            ))}
+          </select>
 
 
           <button

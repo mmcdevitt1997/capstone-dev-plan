@@ -13,7 +13,8 @@ export default class TaskCard extends Component {
             <h5 className="card-title">{this.props.task.taskName}</h5>
 
           <p>Due Date: {this.props.task.taskDueDate}</p>
-          <p>Project: {this.props.task.projectId}</p>
+          <p>Project: {this.props.task.projectName}</p>
+          <p>Phase: {this.props.task.phaseName}</p>
           <p>id: {this.props.task.id}</p>
 
           <button

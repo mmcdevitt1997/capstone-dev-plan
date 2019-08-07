@@ -3,11 +3,11 @@ import TaskHandler from "../apiHandler/TaskHandler"
 
 export default class TaskEditCard extends Component{
     state = {
-        userId: "",
+         userId : "",
         taskName: "",
         taskDueDate: "",
-        phaseId: 1,
-        projectId:"",
+        phaseName: "",
+        projectName:"",
 
       };
 
@@ -20,30 +20,32 @@ export default class TaskEditCard extends Component{
 
       updateCurrentTask = evt => {
         evt.preventDefault();
-        const task = {
+        const taskEdit = {
 
           userId: sessionStorage.getItem("userId"),
           taskName: this.state.taskName,
           taskDueDate: this.state.taskDueDate,
-          phaseId: this.state.phaseId,
-          projectId: this.state.projectId
+          phaseName: this.state.phaseId,
+          projectName: this.state.projectName
         };
-        this.props.updateTask(task).then(() => this.props.history.push("/tasks"));
+        this.props.updateTask(taskEdit).then(() => this.props.history.push("/tasks"));
     }
         componentDidMount() {
             TaskHandler.get(this.props.match.params.id)
              .then(task => {
+               console.log(task)
                this.setState({
                  taskName: task.taskName,
                  taskDueDate: task.taskDueDate,
-                 phaseId: task.phaseId,
-                 projectId: task.projectId
+                 phaseName: task.phaseName,
+                 projectName: task.projectName
                });
              });
            }
 
 
       render() {
+
         return (
           <React.Fragment>
             <form className="taskForm">
@@ -56,6 +58,7 @@ export default class TaskEditCard extends Component{
                   onChange={this.handleFieldChange}
                   id="taskName"
                   placeholder="Task Name"
+                  value = {this.state.taskName}
                 />
               </div>
               <div className="form-group">
@@ -72,13 +75,13 @@ export default class TaskEditCard extends Component{
               </div>
               <select
                   name="projectId"
-                  id="projectId"
+                  id="projectName"
                   onChange={this.handleFieldChange}
                   value = {this.state.projectId}
                 >
-                  <option value="projectId">Select Project </option>
+                  <option value="projectName">Select Project </option>
                   {this.props.projects.map(project=> (
-                    <option key={project.id} id={project.id} value={project.id}>
+                    <option key={project.id} id={project.id} value={project.projectName}>
                       {project.projectName}
                     </option>
                   ))}
@@ -87,7 +90,7 @@ export default class TaskEditCard extends Component{
                   name="phase"
                   id="phaseId"
                   onChange={this.handleFieldChange}
-                  value = {this.state.phaseId}
+                  value = {this.state.phaseName}
                 >
                   <option value="phaseId">Select where you are in your task</option>
                   {this.props.phases.map(phase=> (

@@ -5,6 +5,7 @@ export default Object.create(ApiHandler, {
   get: {
      value: function (id) {
         return  ApiHandler.get("projects", id)
+
       }
   },
 getAll: {
@@ -12,10 +13,8 @@ getAll: {
         return ApiHandler.all("projects")
         .then(projectData => {
            let projectArr = ""
-        console.log(projectData)
               Object.keys(projectData).forEach(function(key){
               projectData[key].id = key
-              console.log(projectData)
               projectArr = Object.values(projectData)
             })
             return projectArr

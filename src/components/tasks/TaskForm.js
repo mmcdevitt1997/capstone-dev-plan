@@ -6,14 +6,10 @@ export default class TaskForm extends Component {
     userId: "",
     taskName: "",
     taskDueDate: "",
-    phaseId: 1,
-    projectId:"",
+    phaseName: "",
+    projectName:"",
 
   };
-
-
-
-
 
   handleFieldChange = evt => {
     const stateToChange = {};
@@ -25,12 +21,11 @@ export default class TaskForm extends Component {
   constructNewTask = evt => {
     evt.preventDefault();
     const task = {
-
       userId: sessionStorage.getItem("userId"),
       taskName: this.state.taskName,
       taskDueDate: this.state.taskDueDate,
-      phaseId: this.state.phaseId,
-      projectId: this.state.projectId
+      phaseName: this.state.phaseName,
+      projectName: this.state.projectName
     };
     this.props.addTask(task).then(() => this.props.history.push("/tasks"));
   };
@@ -38,51 +33,51 @@ export default class TaskForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <form className="taskForm">
-          <div className="form-group">
+        <form className="">
+          <div className="">
             <label htmlFor="taskName">task</label>
             <input
               type="text"
               required
-              className="form-control"
+              className=""
               onChange={this.handleFieldChange}
               id="taskName"
               placeholder="Task Name"
             />
           </div>
-          <div className="form-group">
+          <div className="">
             <label htmlFor="taskDueDate">Task Due Date</label>
             <input
               type="date"
               required
-              className="form-control"
+              className=""
               onChange={this.handleFieldChange}
               id="taskDueDate"
               placeholder="Date of task"
             />
           </div>
           <select
-              name="projectId"
-              id="projectId"
+              name="projectName"
+              id="projectName"
               onChange={this.handleFieldChange}
-              value = {this.state.projectId}
+              value = {this.state.projectName}
             >
-              <option value="projectId">Select Project </option>
+              <option value="projectName">Select Project </option>
               {this.props.projects.map(project=> (
-                <option key={project.id} id={project.id} value={project.id}>
+                <option key={project.id} id={project.id} value={project.projectName}>
                   {project.projectName}
                 </option>
               ))}
             </select>
           <select
               name="phase"
-              id="phaseId"
+              id="phaseName"
               onChange={this.handleFieldChange}
-              value = {this.state.phaseId}
+              value = {this.state.phaseName}
             >
-              <option value="phaseId">Select where you are in your task</option>
+              <option value="phaseName">Select where you are in your task</option>
               {this.props.phases.map(phase=> (
-                <option key={phase.id} id={phase.id} value={phase.id}>
+                <option key={phase.id} id={phase.id} value={phase.phaseName}>
                   {phase.phaseName}
                 </option>
               ))}

@@ -1,38 +1,25 @@
 // import React, { Component } from 'react'
 // import getUserGithub from "../../githubAPI/getUserGitHub"
+// import ProjectHandler from "../../apiHandler/ProjectHandler"
 
 // export default class Ticket extends Component {
-//  gitIssues = () => {
-//      let githubAPI = "https://api.github.com/"
-//      let currentUser = getUserGithub.getUser().then(user =>{
-//               return user.name
-//      })
-//     //  let currentProject = get project Id ????
+//     gitIssues = () => {
+//         return getUserGithub.getUser().then(user => {
+//             return user
+//         }).then(ProjectHandler.get(this.props.match.params.id)).then(project => {
+//                   return project
+//         }).then(fetch(`https://api.github.com/repos${user.login}/${project.projectName}/issues`).then(tickets => {
+//                 return console.log(tickets)
+//         }))
+//     }
 
-//      }
-
-
-
-
-
-//     render(){
+//     render() {
 
 //         return (
 
-//                 <section className="tickets">
-//                     {
-
-//                         this.props.tickets.map(ticket =>
-//                                 <div key={project.id}  >
-//                                     <ProjectCard key={project.id} project={project} {...this.props} />
-//                                 </div>
-//                         )
-//                     }
-//        </section>
+//             <div>
+//                 <p>hello</p>
 //             </div>
 //         )
 //     }
 // }
-
-
-

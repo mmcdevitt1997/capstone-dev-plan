@@ -16,9 +16,9 @@ export default class ProjectCard extends Component {
         <div className="card-body">
 
             <CardTitle>{this.props.project.projectName}</CardTitle>
+          <p>Due Date: {this.props.project.projectDueDate}</p>
+          <p>Phase: {this.props.project.phaseName}</p>
 
-
-          <p>Due Date:{this.props.project.projectDueDate}</p>
 
           <button
             onClick={() => this.props.deleteProject(this.props.project.id)}
@@ -28,12 +28,12 @@ export default class ProjectCard extends Component {
           </button>
           <Button
             onClick={() => this.props.deleteProject(this.props.project.id)}
-            className="delete-btn"
+            className="btn"
           >
             Edit
           </Button>
           <button
-            onClick={() => this.props.push (`/projects${this.props.project.id}/tickets`)
+            onClick={() => this.props.history.push(`/projects/${this.props.project.id}/tickets`)
             }
             className="btn"
           >
@@ -41,15 +41,9 @@ export default class ProjectCard extends Component {
           </button>
           <button
             onClick={() => this.props.deleteProject(this.props.project.id)}
-            className="delete-btn"
+            className="btn"
           >
-            task
-          </button>
-          <button
-            onClick={() => this.props.deleteProject(this.props.project.id)}
-            className="delete-btn"
-          >
-            images
+            Task Page
           </button>
         </div>
 

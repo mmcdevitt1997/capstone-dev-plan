@@ -11,6 +11,8 @@ import PhaseHandler from "./apiHandler/PhaseHandler"
 import getReposGithub from "./githubAPI/getReposGithub"
 import TaskEditCard from "./tasks/TaskEditCard"
 import SubTaskHandler from "./apiHandler/SubTaskHandler"
+import Ticket from "./projects/ticket-page /Ticket"
+import ProjectEdit from "./projects/ProjectEdit"
 
 
 
@@ -46,7 +48,7 @@ class ApplicationViews extends Component {
       .then (gitRepos => {
        this.setState({gitRepos:gitRepos})
      })
-     .then(() => SubTaskHandler.getRepos())
+     .then(() => SubTaskHandler.getAll())
       .then (subTasks => {
        this.setState({subTasks:subTasks})
      })
@@ -117,7 +119,7 @@ class ApplicationViews extends Component {
             }}
           />
           <Route
-          exact
+           exact
             path="/tasks"
             render={props => {
             return <Task {...props} tasks={this.state.tasks}  deleteTask={this.deleteTask} />
@@ -146,28 +148,29 @@ class ApplicationViews extends Component {
               return <Project {...props} projects={this.state.projects} deleteProject={this.deleteProject} />
             }}
           />
-          {/* <Route
+          <Route
             exact
-            path="/projects/:id(/d+)/tickets"
+            path="/projects/:id/tickets"
             render={props => {
 
               return <Ticket {...props} projects={this.state.projects} tickets={this.state.tickets} />
-            }} */}
-
-          {/* <Route
-            exact
-            path="/projects/:id(/d+)/edit"
-            render={props => {
-              return <ProjectEdit {...props} projects={this.state.projects}  />
             }}
-          /> */}
-          <Route
+            />
+            <Route
             exact
-            path="/tasks/:id(\d+)/edit"
+            path="/projects/:id/edit"
             render={props => {
-              return <TaskEditCard {...props} tasks={this.tasks} phases={this.phases} projects={this.projects} updateTask={this.updateTask}  />
+              return <ProjectEdit {...props} projects={this.projects} updateProject= {this.updateProject} />
             }}
           />
+
+           <Route
+             exact
+             path="/tasks/:taskId/edit"
+            render={props => {
+               return <TaskEditCard {...props} tasks={this.state.tasks} phases={this.state.phases} projects={this.state.projects} updateTask={this.updateTask}  />
+             }}
+           />
 
 
         </div>

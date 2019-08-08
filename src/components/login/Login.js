@@ -16,7 +16,7 @@ export default class Login extends Component {
       .then(() => getUserGiHub.getUser())
       .then(() =>
         ProjectHandler.getAll().then(data => {
-          data.forEach(function(project) {
+          data.forEach(function (project) {
             console.log(project);
           });
         })
@@ -25,13 +25,16 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="login-container">
-        <h1>Login with Github</h1>
-        <form onSubmit={this.submit}>
-          <button type="button" onClick={() => this.handleGithub()}>
-            Sign in
+      <div>
+        <h1>Welcome to Dev-Plan</h1>
+        <div className="login-container">
+          <h2>Login with Github</h2>
+          <form onSubmit={this.submit}>
+            <button type="button" onClick={() => this.handleGithub()}>
+              Sign in
           </button>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

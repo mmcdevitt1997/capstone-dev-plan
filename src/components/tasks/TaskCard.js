@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 
 export default class TaskCard extends Component {
-  handlePhaseChange = event => {
+  handleTaskPhaseChange = event => {
     event.preventDefault();
     this.props.task.phaseName = event.target.value;
     this.props.updateTask(this.props.task);
@@ -20,7 +20,7 @@ export default class TaskCard extends Component {
           <select
             name="phase"
             id="phaseName"
-            onChange={this.handlePhaseChange}
+            onChange={this.handleTaskPhaseChange}
             value={this.phaseName}
           >
             <option value="phaseName">{this.props.task.phaseName}</option>

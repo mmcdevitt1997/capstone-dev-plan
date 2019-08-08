@@ -6,10 +6,10 @@ import {
 } from 'reactstrap';
 
 export default class ProjectCard extends Component {
-  handlePhaseChange = event => {
+  handleProjectPhaseChange = event => {
     event.preventDefault();
     this.props.project.phaseName = event.target.value;
-    this.props.updateProject(this.props.projects.id);
+    this.props.updateProject(this.props.projects);
   };
   render() {
 
@@ -19,11 +19,10 @@ export default class ProjectCard extends Component {
           <div className="card-body">
             <CardTitle>{this.props.project.projectName}</CardTitle>
             <p>Due Date: {this.props.project.projectDueDate}</p>
-
-            <select
+            {/* <select
             name="phase"
             id="phaseName"
-            onChange={this.handlePhaseChange}
+            onChange={this.handleProjectPhaseChange}
             value={this.phaseName}
           >
             <option value="phaseName">{this.props.project.phaseName}</option>
@@ -32,7 +31,7 @@ export default class ProjectCard extends Component {
                 {phase.phaseName}
               </option>
             ))}
-          </select>
+          </select> */}
             <button
               onClick={() => this.props.deleteProject(this.props.project.id)}
               className="delete-btn"

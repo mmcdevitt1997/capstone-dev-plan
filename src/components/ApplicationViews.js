@@ -208,12 +208,13 @@ class ApplicationViews extends Component {
             exact
             path="/projects/:projectName/tasks"
             render={props => {
+              console.log(this.state.tasks)
              let projectTask =''
              if (this.isAuthenticated()) {
-               projectTask = this.state.tasks.find(task =>
-                task.projectName === parseInt(props.match.params.projectName)
+               projectTask = this.state.tasks.filter(task =>
+                task.projectName === (props.match.params.projectName)
                 )
-           return(<Task {...props}   tasks ={projectTask} projects={this.projects} phases={this.state.phases} updateProject= {this.updateProject} />)
+           return(<Task {...props}   tasks={projectTask} projects={this.projects} phases={this.state.phases} updateProject= {this.updateProject} />)
 
             } else {
               return <Redirect to="/login" />;

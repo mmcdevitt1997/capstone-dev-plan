@@ -24,12 +24,13 @@ handleFieldChange = evt => {
       projectDueDate: this.state.projectDueDate,
       phaseName: this.state.phaseName,
     };
-    this.props.updateProject(projectEdit.id).then(() => this.props.history.push("/projects"));
+    this.props.updateProject(projectEdit).then(() => this.props.history.push("/projects"));
 }
 componentDidMount() {
     ProjectHandler.get(this.props.match.params.id)
      .then(project => {
        this.setState({
+        id: this.props.match.params.id,
         projectName: project.projectName,
          projectDueDate: project.projectDueDate,
          phaseName: project.phaseName,

@@ -32,5 +32,10 @@ export default Object.create(ApiHandler, {
     value: function(editData) {
       return ApiHandler.put("projects", editData);
     }
+  },
+  patch: {
+    value: function(editData, id) {
+      return ApiHandler.put(editData, id);
+    }
   }
 });

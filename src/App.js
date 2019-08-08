@@ -31,7 +31,7 @@ class App extends Component {
           <Route
             path="/"
             render={props => {
-              return this.state.user ? (
+              return sessionStorage.getItem("userId")? (
                 <div>
                   <NavBar {...props} />
                   <ApplicationViews {...props}/>

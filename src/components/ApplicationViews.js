@@ -104,7 +104,20 @@ class ApplicationViews extends Component {
       this.setState({projects:projects})
     })
   }
-
+  patchProject = (edit, id) => {
+    ProjectHandler.patch(edit, id)
+    .then(() => ProjectHandler.getAll())
+    .then (projects => {
+      this.setState({projects:projects})
+    })
+  }
+  patchTask= (edit, id) => {
+    TaskHandler.patch(edit, id)
+    .then(() => TaskHandler.getAll())
+    .then (tasks => {
+      this.setState({tasks:tasks})
+    })
+  }
 
 
   isAuthenticated = () => sessionStorage.getItem("userId") !== null;
@@ -185,24 +198,28 @@ class ApplicationViews extends Component {
             path="/projects/:id/edit"
             render={props => {
               if (this.isAuthenticated()) {
-              return <ProjectEdit gitRepos={this.state.gitRepos} {...props} projects={this.projects} phases={this.state.phases} updateProject= {this.updateProject} />
+              return <ProjectEdit gitRepos={this.state.gitRepos} {...props} projects={this.projects} phases={this.state.phases} updateProject= {this.updateProject}   patchProject= {this.patchProject} />
             } else {
               return <Redirect to="/login" />;
                 }
             }}
           />
-           {/* <Route
+           <Route
             exact
-            path="/projects/:id/tasks"
+            path="/projects/:projectName/tasks"
             render={props => {
-              if (this.isAuthenticated()) {
-                this.props.tasks.filter(tasks=>tasks.projectName === projects).map(taskFilter =>
-              return <TaskCard  {...props} projects={this.projects} phases={this.state.phases} updateProject= {this.updateProject} />
+             let projectTask =''
+             if (this.isAuthenticated()) {
+               projectTask = this.state.tasks.find(task =>
+                task.projectName === parseInt(props.match.params.projectName)
+                )
+           return(<Task {...props}   tasks ={projectTask} projects={this.projects} phases={this.state.phases} updateProject= {this.updateProject} />)
+
             } else {
               return <Redirect to="/login" />;
                 }
             }}
-          /> */}
+          />
 
            <Route
              exact

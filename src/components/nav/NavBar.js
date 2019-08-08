@@ -31,6 +31,16 @@ class NavBar extends Component {
 
         <Col xs="3" sm="3" md="2.5" className= "column">
           <Nav tabs vertical pills className= "nav">
+          <NavItem className= "Navbar">
+            <Link
+                to="/"
+                className={classnames()}
+                onClick={() => {
+                }}
+              >
+               Tasks
+               </Link>
+            </NavItem>
             <NavItem className= "sidebar" >
               <Link
              color = "#ffffff"
@@ -44,16 +54,7 @@ class NavBar extends Component {
                 Projects
               </Link>
             </NavItem>
-            <NavItem className= "Navbar">
-            <Link
-                to="/"
-                className={classnames()}
-                onClick={() => {
-                }}
-              >
-               Tasks
-               </Link>
-            </NavItem>
+
             <NavItem>
               <Link
               to = "/login"

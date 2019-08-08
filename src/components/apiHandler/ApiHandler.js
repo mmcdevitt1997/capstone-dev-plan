@@ -52,9 +52,15 @@ export default Object.create(null, {
         }
     },
 
-    search: {
-        value: function (resource, id) {
-            return fetch(`${url}/${resource}/${id}.json`).then(data => data.json())
+    patch: {
+        value: function (edit, id) {
+            return fetch(`${url}/${id}.json`, {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(edit)
+              }).then(res => res.json())
         }
     },
 

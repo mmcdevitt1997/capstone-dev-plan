@@ -5,8 +5,10 @@ import TaskCard from "./TaskCard"
 export default class Task extends Component {
 
   render() {
+    console.log(this.props.task)
     return (
       <div>
+        <h1>Task Page</h1>
       <div className="AddTaskButton">
       <button type="button"
           className="btn btn-success"
@@ -53,7 +55,6 @@ export default class Task extends Component {
 
             <div className="">
               {
-                // filter(tasks =>tasks.phaseName === "Done")
                 this.props.tasks.filter(tasks =>tasks.phaseName === "Done").map(taskFilter =>
                   <div key={taskFilter.id}>
                     <TaskCard key={taskFilter.id} task={taskFilter} phases={this.phases} {...this.props} />

@@ -27,7 +27,7 @@ export default class TaskForm extends Component {
       phaseName: this.state.phaseName,
       projectName: this.state.projectName
     };
-    this.props.addTask(task).then(() => this.props.history.push("/tasks"));
+    this.props.addTask(task).then(() => this.props.history.push("/"));
   };
   // the new task form
   render() {

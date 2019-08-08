@@ -19,8 +19,8 @@ export default class ProjectCard extends Component {
           <div className="card-body">
             <CardTitle>{this.props.project.projectName}</CardTitle>
             <p>Due Date: {this.props.project.projectDueDate}</p>
-            {/* <p>{this.props.project.phaseName}</p> */}
-            {/* <select
+
+            <select
             name="phase"
             id="phaseName"
             onChange={this.handlePhaseChange}
@@ -32,9 +32,7 @@ export default class ProjectCard extends Component {
                 {phase.phaseName}
               </option>
             ))}
-          </select> */}
-
-
+          </select>
             <button
               onClick={() => this.props.deleteProject(this.props.project.id)}
               className="delete-btn"
@@ -55,18 +53,19 @@ export default class ProjectCard extends Component {
               Tickets
           </button>
 
-            {/* {
-               this.props.tasks.filter(tasks => tasks.projectName === this.props.project.projectName).map(taskFilter => {
+         {/* {
+              this.props.tasks.filter(tasks => tasks.projectName === this.props.project.projectName).map(taskFilter => {
                 <Route
                   exact
-                  path="/projects/:id/tasks"
-                  render={props => {
-                    return <Task {...props} projects={this.projects} phases={this.state.phases} task={taskFilter} key={taskFilter.id} />
-                    )}}
-                 />
+                 path="/projects/:id/tasks"
+                   render={props => {
+                     return <Task {...props} projects={this.projects} phases={this.state.phases} task={taskFilter} key={taskFilter.id} />
+               )}}
+                />
              } */}
+
             <button
-              onClick={() => this.props.history.push(`/projects/${this.props.project.id}/tasks`)}
+              onClick={() => this.props.history.push(`/projects/${this.props.project.projectName}/tasks`)}
               className="btn"
             >
               Task Page

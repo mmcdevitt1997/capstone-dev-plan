@@ -1,37 +1,37 @@
 import React, { Component } from "react";
 
 export default class TicketDisplay extends Component {
-    handleTicketChange = event => {
-        event.preventDefault()
-        this.props.ticket = event.target.value;
 
-      }
+//   handleTicketChange = event => {
+//     event.preventDefault();
+//     this.props.tickets = event.target.value;
+//   };
 
-    render() {
-        return (
-            <div>
+// updateTicketBody = event => {
+//     const ticket = {
+//         body: this.state.body
+//       }
+//       this.props.updateTicket(ticket)
+// }
 
-                <select
-                    name="ticketSelect"
-                    id="ticketSeclect"
-                    onChange={this.handleTicketChange}
-                    // value={tickets.name}
-                >
-                    {
+  render() {
+    return (
+      <div>
+        <select
+          name="ticketSelect"
+          id="ticketSeclect"
+          onChange={this.handleTicketChange}
+          value=''
+        >
+          {this.props.tickets.map(ticket => (
+            <option value="" key={ticket.id} id={ticket.id} value={ticket.body}>
+             {ticket.title}
+            </option>
+          ))}
+        </select>
 
-                        this.props.tickets.map(ticket =>
-                        <option key={ticket.id} id={ticket.id} value={ticket.body}>
-                            {ticket.title}
-                        </option>
-                    )}
-                </select>
-
-           <div>
-               {/* display the ticket body */}
-           </div>
-
-            </div>
-
-        )
-    }
+        <div>{/* display the ticket body */}</div>
+      </div>
+    );
+  }
 }

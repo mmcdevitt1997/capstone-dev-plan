@@ -7,6 +7,7 @@ import TicketDisplay from "./TicketDisplay"
 export default class Ticket extends Component {
     state = {
        tickets:[]
+
      };
      gitIssues = () => {
         return Promise.all([getUserGithub.getUser(), ProjectHandler.get(this.props.match.params.id)])
@@ -21,12 +22,13 @@ export default class Ticket extends Component {
         .then(() => this.setState(newState))
     }
     render() {
+        console.log(this.state.tickets)
         return (
             <div>
                 <h1>Project Tickets</h1>
-                {
-                <TicketDisplay key={this.state.tickets.id} tickets={this.state.tickets} {...this.props} />
-                }
+
+                <TicketDisplay key={this.state.tickets.id} ticket={this.state.ticket} {...this.props} />
+
             </div>
         )
     }

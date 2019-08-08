@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-
 import getUserGiHub from "../githubAPI/getUserGitHub";
-
-import {  loginWithGithub } from "../../auth/UserManager";
-
+import { loginWithGithub } from "../../auth/UserManager";
 import "./Login.css";
-import PhaseHandler from "../apiHandler/PhaseHandler";
+import ProjectHandler from "../apiHandler/ProjectHandler";
+
 
 export default class Login extends Component {
   handleGithub = () => {
@@ -17,10 +15,13 @@ export default class Login extends Component {
       })
       .then(() => getUserGiHub.getUser())
       .then(() =>
-        PhaseHandler.getAll().then(data => {
+        ProjectHandler.getAll().then(data => {
           data.forEach(function(project) {
-           console.log(project.phaseName)
-          })}))}
+            console.log(project);
+          });
+        })
+      );
+  };
 
   render() {
     return (

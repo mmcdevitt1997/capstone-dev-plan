@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router , withRouter } from "react-router-dom";
+import { Route, BrowserRouter as Router , withRouter, Redirect  } from "react-router-dom";
 import React, { Component } from "react";
 import Project from "./projects/Project";
 import Task from "./tasks/Task";
@@ -13,6 +13,7 @@ import TaskEditCard from "./tasks/TaskEditCard"
 import SubTaskHandler from "./apiHandler/SubTaskHandler"
 import Ticket from "./projects/ticket-page /Ticket"
 import ProjectEdit from "./projects/ProjectEdit"
+import TaskCard from "./tasks/TaskCard";
 
 
 
@@ -55,7 +56,7 @@ class ApplicationViews extends Component {
 
   updateProject = editProject=>
     ProjectHandler.put(editProject)
-      .then(() => Project.getAll())
+      .then(() => ProjectHandler.getAll())
       .then(projects =>
         this.setState({
            projects: projects
@@ -106,70 +107,112 @@ class ApplicationViews extends Component {
 
 
 
-  isAuthenticated = () => sessionStorage.getItem("id") !== null;
+  isAuthenticated = () => sessionStorage.getItem("userId") !== null;
 
   render() {
     return (
       <React.Fragment>
         <div>
-          <Route
-            exact
-            path="/"
-            render={props => {
-              return null;
-            }}
-          />
+
           <Route
            exact
-            path="/tasks"
+            path="/"
             render={props => {
+              if (this.isAuthenticated()) {
             return <Task {...props} tasks={this.state.tasks} phases={this.state.phases} deleteTask={this.deleteTask}  updateTask ={this.updateTask} />
+          } else {
+            return <Redirect to="/login" />;
+              }
             }}
           />
           <Route
             exact
             path="/tasks/new"
             render={props => {
+              if (this.isAuthenticated()) {
             return <TaskForm phases={this.state.phases} {...props} addTask={this.addTask} projects={this.state.projects}/>
+          } else {
+            return <Redirect to="/login" />;
+              }
             }}
           />
           <Route
             exact
             path="/projects/new"
             render={props => {
-              return (
-                <ProjectForm {...props} gitRepos={this.state.gitRepos} phases={this.state.phases} addProject={this.addProject} />
-              );
+              if (this.isAuthenticated()) {
+              return  <ProjectForm {...props} gitRepos={this.state.gitRepos} phases={this.state.phases} addProject={this.addProject} />
+            } else {
+              return <Redirect to="/login" />;
+                }
             }}
           />
           <Route
             exact
             path="/projects"
             render={props => {
+              if (this.isAuthenticated()) {
               return <Project {...props} projects={this.state.projects} deleteProject={this.deleteProject} updateProject={this.updateProject} phases={this.state.phases} />
+            } else {
+              return <Redirect to="/login" />;
+                }
             }}
           />
           <Route
             exact
             path="/projects/:id/tickets"
             render={props => {
-
+              if (this.isAuthenticated()) {
               return <Ticket {...props} projects={this.state.projects} />
+            } else {
+              return <Redirect to="/login" />;
+                }
             }}
+            />
+            <Route
+              exact
+              path="/projects/:id/task"
+              render={props => {
+                if (this.isAuthenticated()) {
+                return <Ticket {...props} projects={this.state.projects} />
+              } else {
+                return <Redirect to="/login" />;
+                  }
+              }}
             />
             <Route
             exact
             path="/projects/:id/edit"
             render={props => {
-              return <ProjectEdit {...props} projects={this.projects} updateProject= {this.updateProject} />
+              if (this.isAuthenticated()) {
+              return <ProjectEdit gitRepos={this.state.gitRepos} {...props} projects={this.projects} phases={this.state.phases} updateProject= {this.updateProject} />
+            } else {
+              return <Redirect to="/login" />;
+                }
             }}
           />
+           {/* <Route
+            exact
+            path="/projects/:id/tasks"
+            render={props => {
+              if (this.isAuthenticated()) {
+                this.props.tasks.filter(tasks=>tasks.projectName === projects).map(taskFilter =>
+              return <TaskCard  {...props} projects={this.projects} phases={this.state.phases} updateProject= {this.updateProject} />
+            } else {
+              return <Redirect to="/login" />;
+                }
+            }}
+          /> */}
 
            <Route
              exact
              path="/tasks/:id/edit"
             render={props => {
+              if (this.isAuthenticated()) {
                return <TaskEditCard {...props} tasks={this.state.tasks} phases={this.state.phases} projects={this.state.projects} updateTask={this.updateTask}  />
+              } else {
+                return <Redirect to="/login" />;
+                  }
              }}
            />
 

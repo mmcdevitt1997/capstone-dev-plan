@@ -20,20 +20,21 @@ export default class TaskEditCard extends Component{
       updateCurrentTask = evt => {
         evt.preventDefault();
         const taskEdit = {
-
+          id: this.props.match.params.id,
           userId: sessionStorage.getItem("userId"),
           taskName: this.state.taskName,
           taskDueDate: this.state.taskDueDate,
           phaseName: this.state.phaseName,
           projectName: this.state.projectName
         };
-        this.props.updateTask(taskEdit).then(() => this.props.history.push("/tasks"));
+        this.props.updateTask(taskEdit).then(() => this.props.history.push("/"));
     }
         componentDidMount() {
             TaskHandler.get(this.props.match.params.id)
              .then(task => {
                console.log(task)
                this.setState({
+
                 taskName: task.taskName,
                  taskDueDate: task.taskDueDate,
                  phaseName: task.phaseName,
@@ -53,7 +54,7 @@ export default class TaskEditCard extends Component{
                 <input
                   type="text"
                   required
-                  className="form-control"
+                  className=""
                   onChange={this.handleFieldChange}
                   id="taskName"
                   placeholder="Task Name"
@@ -78,7 +79,6 @@ export default class TaskEditCard extends Component{
                   onChange={this.handleFieldChange}
                   value = {this.state.projectId}
                 >
-                  <option value="">Select Project </option>
                   {this.props.projects.map(project=> (
                     <option key={project.id} id={project.id} value={project.projectName}>
                       {project.projectName}
@@ -87,11 +87,10 @@ export default class TaskEditCard extends Component{
                 </select>
               <select
                   name="phase"
-                  id="phaseId"
+                  id="phaseName"
                   onChange={this.handleFieldChange}
                   value = {this.state.phaseName}
                 >
-                  <option value="phaseId">Select where you are in your task</option>
                   {this.props.phases.map(phase=> (
                     <option key={phase.id} id={phase.id} value={phase.id}>
                       {phase.phaseName}

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+
+
+
 export default class TaskForm extends Component {
   // constructing the for state of task
       state = {
@@ -27,7 +30,7 @@ export default class TaskForm extends Component {
       phaseName: this.state.phaseName,
       projectName: this.state.projectName
     };
-    this.props.addTask(task).then(() => this.props.history.push("/tasks"));
+    this.props.addTask(task).then(this.props.history.goBack());
   };
   // the new task form
   render() {

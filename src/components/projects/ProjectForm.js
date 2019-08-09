@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Dropdown from "reactstrap/lib/Dropdown";
-// import AutoComplete from "../autoComplete/AutoComplete"
+
 export default class ProjectForm extends Component {
   state = {
     userId: "",

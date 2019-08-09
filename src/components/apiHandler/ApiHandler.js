@@ -1,5 +1,7 @@
+
 const url = "https://dev-plan-578fe.firebaseio.com"
 
+const currentUserId = sessionStorage.getItem("userId")
 
 
 export default Object.create(null, {
@@ -10,7 +12,7 @@ export default Object.create(null, {
     },
     all: {
         value: function (resource) {
-            return fetch(`${url}/${resource}.json`).then(data => data.json())
+            return fetch(`${url}/${resource}.json?orderBy="userId"&equalTo="${currentUserId}"`).then(data => data.json())
         }
     },
 
@@ -40,7 +42,7 @@ export default Object.create(null, {
     },
     put: {
         value: function (resource, editData){
-            return fetch (`${url}/${resource}/${editData.id}.json`,{
+            return fetch(`${url}/${resource}/${editData.id}.json`,{
              method: "PUT",
              headers: {
                "Content-Type": "application/json"
@@ -50,9 +52,15 @@ export default Object.create(null, {
         }
     },
 
-    search: {
-        value: function (resource, id) {
-            return fetch(`${url}/${resource}/${id}.json`).then(data => data.json())
+    patch: {
+        value: function (edit, id) {
+            return fetch(`${url}/${id}.json`, {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(edit)
+              }).then(res => res.json())
         }
     },
 

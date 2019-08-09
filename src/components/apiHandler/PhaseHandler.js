@@ -8,7 +8,7 @@ export default Object.create(ApiHandler, {
     },
   getAll: {
       value: function (){
-          return ApiHandler.all("phases")
+          return fetch("https://dev-plan-578fe.firebaseio.com/phases.json").then(data => data.json())
 
   }
   },

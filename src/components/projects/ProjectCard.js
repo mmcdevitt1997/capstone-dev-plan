@@ -1,54 +1,52 @@
 import React, { Component } from "react";
 import "./ProjectCard.css"
-import { Card,
-  CardTitle, Button } from 'reactstrap';
-
-
+import {
+  CardTitle
+} from 'reactstrap';
 
 export default class ProjectCard extends Component {
-
+  handleProjectPhaseChange = event => {
+    event.preventDefault();
+    this.props.project.phaseName = event.target.value;
+    this.props.updateProject(this.props.projects);
+  };
   render() {
 
     return (
-      <Card>
-      <div key={this.props.project.id} className="card">
-
-        <div className="card-body">
-
+      <div>
+        <div key={this.props.project.id} className="card">
+          <div className="card-body">
             <CardTitle>{this.props.project.projectName}</CardTitle>
-          <p>Due Date: {this.props.project.projectDueDate}</p>
-          <p>Phase: {this.props.project.phaseName}</p>
-
-
-          <button
-            onClick={() => this.props.deleteProject(this.props.project.id)}
-            className="delete-btn"
-          >
-            Delete
+            <p>Due Date: {this.props.project.projectDueDate}</p>
+            <button
+              onClick={() => this.props.deleteProject(this.props.project.id)}
+              className="delete-btn"
+            >
+              Delete
           </button>
-          <Button
-            onClick={() => this.props.deleteProject(this.props.project.id)}
-            className="btn"
-          >
-            Edit
-          </Button>
-          <button
-            onClick={() => this.props.history.push(`/projects/${this.props.project.id}/tickets`)
-            }
-            className="btn"
-          >
-            tickets
+            <button
+              onClick={() => this.props.history.push(`projects/${this.props.project.id}/edit`)}
+              className="btn"
+            >
+              Edit
           </button>
-          <button
-            onClick={() => this.props.deleteProject(this.props.project.id)}
-            className="btn"
-          >
-            Task Page
+            <button
+              onClick={() => this.props.history.push(`/projects/${this.props.project.id}/tickets`)
+              }
+              className="btn"
+            >
+              Tickets
           </button>
+            <button
+              onClick={() => this.props.history.push(`/projects/${this.props.project.projectName}/tasks`)}
+              className="btn"
+            >
+              Task Page
+          </button>
+          </div>
         </div>
-
       </div>
-      </Card>
-    );
+    )
   }
 }
+

@@ -1,12 +1,12 @@
 // import React from 'react';
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Redirect, withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/nav/NavBar";
 import ApplicationViews from "./components/ApplicationViews";
 import Login from "./components/login/Login";
 import {
-  setUserInSessionStorage,
+
   getUserInSessionStorage
 } from "./auth/UserManager";
 
@@ -31,7 +31,7 @@ class App extends Component {
           <Route
             path="/"
             render={props => {
-              return this.state.user ? (
+              return sessionStorage.getItem("userId")? (
                 <div>
                   <NavBar {...props} />
                   <ApplicationViews {...props}/>

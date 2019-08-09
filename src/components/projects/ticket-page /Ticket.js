@@ -6,8 +6,7 @@ import TicketDisplay from "./TicketDisplay"
 
 export default class Ticket extends Component {
     state = {
-       tickets:[],
-       body:[]
+       tickets:[]
      };
 
 
@@ -27,12 +26,12 @@ export default class Ticket extends Component {
 
     }
     render() {
-      console.log(this.state.body)
+
         return (
             <div>
                 <h1>Project Tickets</h1>
 
-                <TicketDisplay key={this.state.tickets.id} tickets={this.state.tickets} body={this.state.body}{...this.props} />
+                <TicketDisplay key={this.state.tickets.id} tickets={this.state.tickets} tasks={this.state.tasksß}{...this.props} />
 
             </div>
         )

@@ -13,7 +13,7 @@ import TaskEditCard from "./tasks/TaskEditCard"
 import SubTaskHandler from "./apiHandler/SubTaskHandler"
 import Ticket from "./projects/ticket-page /Ticket"
 import ProjectEdit from "./projects/ProjectEdit"
-import TaskCard from "./tasks/TaskCard";
+
 
 
 
@@ -176,23 +176,13 @@ class ApplicationViews extends Component {
             path="/projects/:id/tickets"
             render={props => {
               if (this.isAuthenticated()) {
-              return <Ticket {...props} projects={this.state.projects} />
+              return <Ticket {...props} projects={this.state.projects} tasks={this.state.tasks} />
             } else {
               return <Redirect to="/login" />;
                 }
             }}
             />
-            <Route
-              exact
-              path="/projects/:id/task"
-              render={props => {
-                if (this.isAuthenticated()) {
-                return <Ticket {...props} projects={this.state.projects} />
-              } else {
-                return <Redirect to="/login" />;
-                  }
-              }}
-            />
+
             <Route
             exact
             path="/projects/:id/edit"
@@ -214,7 +204,7 @@ class ApplicationViews extends Component {
                projectTask = this.state.tasks.filter(task =>
                 task.projectName === (props.match.params.projectName)
                 )
-           return(<Task {...props}   tasks={projectTask} projects={this.projects} phases={this.state.phases} updateProject= {this.updateProject} />)
+           return(<Task {...props}  tasks={projectTask} projects={this.projects} phases={this.state.phases} updateProject= {this.updateProject} />)
 
             } else {
               return <Redirect to="/login" />;

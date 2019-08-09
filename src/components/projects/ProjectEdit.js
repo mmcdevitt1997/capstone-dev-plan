@@ -72,19 +72,6 @@ render() {
               value = {this.state.projectDueDate}
             />
           </div>
-          {/* <select
-              name="phase"
-              id="phaseName"
-              onChange={this.handleFieldChange}
-              value = {this.state.phaseName}
-            >
-
-              {this.props.phases.map(phase=> (
-                <option key={phase.id} id={phase.id} value={phase.phaseName}>
-                  {phase.phaseName}
-                </option>
-              ))}
-            </select> */}
           <button
             type="submit"
             onClick={this.updateCurrentProject}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./ProjectCard.css"
 import {
+  Card,
   CardTitle
 } from 'reactstrap';
 
@@ -13,7 +14,7 @@ export default class ProjectCard extends Component {
   render() {
 
     return (
-      <div>
+      <Card>
         <div key={this.props.project.id} className="card">
           <div className="card-body">
             <CardTitle>{this.props.project.projectName}</CardTitle>
@@ -45,7 +46,7 @@ export default class ProjectCard extends Component {
           </button>
           </div>
         </div>
-      </div>
+      </Card>
     )
   }
 }

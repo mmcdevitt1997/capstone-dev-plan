@@ -38,7 +38,7 @@ export default class TaskForm extends Component {
       <React.Fragment>
         <form className="">
           <div className="">
-            <label htmlFor="taskName">task</label>
+            <label htmlFor="taskName">task: </label>
             <input
               type="text"
               required
@@ -49,7 +49,7 @@ export default class TaskForm extends Component {
             />
           </div>
           <div className="">
-            <label htmlFor="taskDueDate">Task Due Date</label>
+            <label htmlFor="taskDueDate">Task Due Date: </label>
             <input
               type="date"
               required

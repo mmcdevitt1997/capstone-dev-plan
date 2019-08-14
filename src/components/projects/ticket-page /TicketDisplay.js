@@ -29,7 +29,7 @@ export default class TicketDisplay extends Component {
                     onChange={this.handleChange}
                     value={this.props.tickets.title}
                 >
-                    <option value="Ticket">Select Ticket </option>
+                    <option value="Ticket Will Display Here">Select Ticket </option>
                     {this.props.tickets.map(ticket => (
                         <option key={ticket.id} id={ticket.id} value={ticket.body}>
                             {ticket.title}

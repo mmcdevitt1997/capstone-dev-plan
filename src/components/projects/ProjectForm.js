@@ -59,7 +59,7 @@ export default class ProjectForm extends Component {
               placeholder="Date of project"
             />
           </div>
-          <select
+          {/* <select
               name="phase"
               id="phaseName"
               onChange={this.handleFieldChange}
@@ -71,7 +71,7 @@ export default class ProjectForm extends Component {
                   {phase.phaseName}
                 </option>
               ))}
-            </select>
+            </select> */}
           <button
             type="submit"
             onClick={this.constructNewProject}

@@ -77,7 +77,7 @@ export default class TaskEditCard extends Component{
                   name=""
                   id="projectName"
                   onChange={this.handleFieldChange}
-                  value = {this.state.projectId}
+                  value = {this.state.projectName}
                 >
                   {this.props.projects.map(project=> (
                     <option key={project.id} id={project.id} value={project.projectName}>
@@ -92,7 +92,7 @@ export default class TaskEditCard extends Component{
                   value = {this.state.phaseName}
                 >
                   {this.props.phases.map(phase=> (
-                    <option key={phase.id} id={phase.id} value={phase.id}>
+                    <option key={phase.id} id={phase.id} value={phase.phaseName}>
                       {phase.phaseName}
                     </option>
                   ))}

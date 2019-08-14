@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import "./Task.css"
 import TaskCard from "./TaskCard"
+import {
+  Button,
+} from 'reactstrap';
+
 
 export default class Task extends Component {
 
@@ -10,12 +14,12 @@ export default class Task extends Component {
       <div>
         <h1>Task Page</h1>
         <div className="AddTaskButton">
-          <button type="button"
-            className="btn btn-success"
+          <Button
+
             onClick={() => {
               this.props.history.push("/tasks/new")
             }
-            }>Add Task</button>
+            }>Add Task</Button>
         </div>
 
         <div className="bigFlex">
@@ -24,7 +28,6 @@ export default class Task extends Component {
             <div className="">
               <div className="">
                 {
-
                   this.props.tasks.filter(tasks => tasks.phaseName === "To Do").map(taskFilter =>
                     <div key={taskFilter.id} >
                       <TaskCard key={taskFilter.id} task={taskFilter} phases={this.phases} {...this.props} />

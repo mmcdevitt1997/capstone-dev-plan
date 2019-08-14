@@ -1,4 +1,12 @@
 import React, { Component } from "react";
+import {
+  Card,
+  CardTitle,
+  Button,
+  CardBody,
+  CardSubtitle
+} from 'reactstrap';
+
 
 
 export default class TaskCard extends Component {
@@ -10,12 +18,12 @@ export default class TaskCard extends Component {
 
   render() {
     return (
-      <div key={this.props.task.id} className="">
-        <div className="">
-          <h5 className="card-title">{this.props.task.taskName}</h5>
+      <Card key={this.props.task.id} style={{ backgroundColor: '#272727', borderColor: '#333' }}>
+        <CardBody>
+          <CardTitle>{this.props.task.taskName}</CardTitle>
 
-          <p>Due Date: {this.props.task.taskDueDate}</p>
-          <p>Project: {this.props.task.projectName}</p>
+          <CardSubtitle>Due Date: {this.props.task.taskDueDate}</CardSubtitle>
+          <CardSubtitle>Project: {this.props.task.projectName}</CardSubtitle>
 
           <select
             name="phase"
@@ -31,22 +39,25 @@ export default class TaskCard extends Component {
             ))}
           </select>
 
-          <button
+          <Button
             onClick={() => this.props.deleteTask(this.props.task.id)}
             className="btn"
+            style={{ backgroundColor: 'red', padding: '1px 1px' }}
           >
-            Delete
-          </button>
-          <button
+<img src="https://img.icons8.com/ios/25/000000/trash.png"></img>
+          </Button>
+
+
+          <Button
             onClick={() =>
               this.props.history.push(`/tasks/${this.props.task.id}/edit`)
             }
             className="btn"
           >
             edit
-          </button>
-        </div>
-      </div>
+          </Button>
+        </CardBody>
+      </Card>
     );
   }
 }

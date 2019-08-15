@@ -1,11 +1,19 @@
 import React, { Component } from "react";
+import "./ticket.css"
+import {
+    Card,
+    CardTitle,
+    Button,
+    CardBody,
+    CardSubtitle
+  } from 'reactstrap';
 
 
 export default class TicketDisplay extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { value: '' };
+        this.state = { value: 'Ticket will display here.' };
 
         this.handleChange = this.handleChange.bind(this);
     }
@@ -16,13 +24,16 @@ export default class TicketDisplay extends Component {
 
     render() {
         return (
-            <div>
+            <div >
+                <div>
                 <button type="button"
                     className="btn btn-success"
                     onClick={() => {
                         this.props.history.push("/tasks/new")
                     }
                     }>Add Task</button>
+                    </div>
+
                 <select
                     name="ticketSelect"
                     id="ticketSelect"
@@ -36,9 +47,20 @@ export default class TicketDisplay extends Component {
                         </option>
                     ))}
                 </select>
-                <div> {this.state.value} </div>
+
+                <div className='ticketContent'>
+                <Card
+                className='center'
+                >
+                <CardTitle
+
+                >
+                {this.state.value}
+                </CardTitle>
+                </Card>
 
 
+                </div>
             </div >
         );
     }

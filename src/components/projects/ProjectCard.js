@@ -23,28 +23,34 @@ export default class ProjectCard extends Component {
             <CardSubtitle>Due Date: {this.props.project.projectDueDate}</CardSubtitle>
             <Button
               onClick={() => this.props.deleteProject(this.props.project.id)}
-              className="delete-btn"
+              style={{ backgroundColor: 'red', padding: '1px 1px' }}
+              className="marginRight"
             >
-              Delete
+               <img src="https://img.icons8.com/ios/25/000000/trash.png"></img>
           </Button>
+
             <Button
-              onClick={() => this.props.history.push(`projects/${this.props.project.id}/edit`)}
-              className="btn"
-            >
-              Edit
-          </Button>
-            <Button
+               style={{ padding: '1px 1px', margin:'5px'  }}
               onClick={() => this.props.history.push(`/projects/${this.props.project.id}/tickets`)
               }
-              className="btn"
+
             >
               Tickets
           </Button>
             <Button
+            style={{ padding: '1px 1px' }}
               onClick={() => this.props.history.push(`/projects/${this.props.project.projectName}/tasks`)}
-              className="btn"
+
             >
               Task Page
+          </Button>
+          <Button
+              onClick={() => this.props.history.push(`projects/${this.props.project.id}/edit`)}
+              style={{ backgroundColor: 'white', padding: '1px 1px' }}
+              className="marginLeft"
+
+            >
+            <img src="https://img.icons8.com/pastel-glyph/25/000000/edit.png"></img>
           </Button>
         </CardBody>
       </Card>

@@ -1,25 +1,24 @@
 import React, { Component } from "react";
 import "./Task.css"
 import TaskCard from "./TaskCard"
+import TaskForm from "./TaskForm"
 import {
-  Button,
+  Button, Modal, ModalHeader, ModalBody
 } from 'reactstrap';
 
 
 export default class Task extends Component {
 
-  render() {
 
+
+  render() {
     return (
       <div>
+      <div>
         <h1>Task Page</h1>
-        <div className="AddTaskButton">
-          <Button
-
-            onClick={() => {
-              this.props.history.push("/tasks/new")
-            }
-            }>Add Task</Button>
+        <div>
+        <TaskForm phases={this.props.phases} {...this.props} addTask={this.props.addTask} projects={this.props.projects}/>
+         </div>
         </div>
 
         <div className="bigFlex">

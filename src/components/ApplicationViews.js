@@ -17,6 +17,8 @@ import ProjectEdit from "./projects/ProjectEdit"
 
 
 
+
+
 class ApplicationViews extends Component {
   state = {
     users: [],
@@ -132,7 +134,7 @@ class ApplicationViews extends Component {
             path="/"
             render={props => {
               if (this.isAuthenticated()) {
-            return <Task {...props} tasks={this.state.tasks} phases={this.state.phases} deleteTask={this.deleteTask}  updateTask ={this.updateTask} />
+            return <Task {...props} tasks={this.state.tasks} phases={this.state.phases} deleteTask={this.deleteTask}  updateTask ={this.updateTask} projects={this.state.projects} addTask={this.addTask} />
           } else {
             return <Redirect to="/login" />;
               }
@@ -165,7 +167,7 @@ class ApplicationViews extends Component {
             path="/projects"
             render={props => {
               if (this.isAuthenticated()) {
-              return <Project {...props} projects={this.state.projects} deleteProject={this.deleteProject} updateProject={this.updateProject} phases={this.state.phases} />
+              return <Project {...props} projects={this.state.projects} gitRepos={this.state.gitRepos} deleteProject={this.deleteProject} updateProject={this.updateProject} phases={this.state.phases} addProject={this.addProject} />
             } else {
               return <Redirect to="/login" />;
                 }

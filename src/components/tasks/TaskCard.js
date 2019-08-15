@@ -25,6 +25,15 @@ export default class TaskCard extends Component {
           <CardSubtitle>Due Date: {this.props.task.taskDueDate}</CardSubtitle>
           <CardSubtitle>Project: {this.props.task.projectName}</CardSubtitle>
 
+
+
+          <Button
+            className="marginRight"
+            onClick={() => this.props.deleteTask(this.props.task.id)}
+            style={{ backgroundColor: 'red', padding: '1px 1px' }}
+          >
+            <img src="https://img.icons8.com/ios/25/000000/trash.png"></img>
+          </Button>
           <select
             name="phase"
             id="phaseName"
@@ -40,21 +49,11 @@ export default class TaskCard extends Component {
           </select>
 
           <Button
-            onClick={() => this.props.deleteTask(this.props.task.id)}
-            className="btn"
-            style={{ backgroundColor: 'red', padding: '1px 1px' }}
+            className="marginLeft"
+            onClick={() => this.props.history.push(`/tasks/${this.props.task.id}/edit`)}
+            style={{ backgroundColor: 'white', padding: '1px 1px' }}
           >
-<img src="https://img.icons8.com/ios/25/000000/trash.png"></img>
-          </Button>
-
-
-          <Button
-            onClick={() =>
-              this.props.history.push(`/tasks/${this.props.task.id}/edit`)
-            }
-            className="btn"
-          >
-            edit
+            <img src="https://img.icons8.com/pastel-glyph/25/000000/edit.png"></img>
           </Button>
         </CardBody>
       </Card>

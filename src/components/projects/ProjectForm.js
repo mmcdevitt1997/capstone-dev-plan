@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button, Form, FormGroup, Label, Input, FormText, Modal, ModalBody } from 'reactstrap';
 
 export default class ProjectForm extends Component {
   state = {
@@ -7,6 +8,27 @@ export default class ProjectForm extends Component {
     projectDueDate: "",
     phaseName: ""
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false,
+      userId: "",
+      projectName: "",
+      projectDueDate: "",
+      phaseName: ""
+    }
+    this.toggle = this.toggle.bind(this);
+  }
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal,
+      userId: "",
+      projectName: "",
+      projectDueDate: "",
+      phaseName: "",
+    }));
+  }
+
 
   handleFieldChange = evt => {
     const stateToChange = {};
@@ -23,16 +45,20 @@ export default class ProjectForm extends Component {
       projectDueDate: this.state.projectDueDate,
       phaseName: this.state.phaseName
     };
-    this.props.addProject(project).then(() => this.props.history.push("/projects"));
+    this.toggle()
+    this.props.addProject(project)
   };
   // the new task form
   render() {
     return (
       <React.Fragment>
-        <form className="">
-          <div className="">
+              <Button onClick={this.toggle}>Add Project</Button>
+              <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+              <ModalBody>
+        <Form>
+          <FormGroup>
             <label htmlFor="projectName">
-              Enter the name of your project repo
+              Enter the name of your project repo:
             </label>
             <select
               name="projectName"
@@ -47,39 +73,28 @@ export default class ProjectForm extends Component {
                 </option>
               ))}
             </select>
-          </div>
-          <div className="">
-            <label htmlFor="projectDueDate"> Project Due Date</label>
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="projectDueDate"> Project Due Date:</Label>
             <input
               type="date"
               required
-              className=""
+                style = {{width:'fitContent'}}
               onChange={this.handleFieldChange}
               id="projectDueDate"
               placeholder="Date of project"
             />
-          </div>
-          {/* <select
-              name="phase"
-              id="phaseName"
-              onChange={this.handleFieldChange}
-              value = {this.state.phaseName}
-            >
-              <option value="phaseName">Select where you are in your project</option>
-              {this.props.phases.map(phase=> (
-                <option key={phase.id} id={phase.id} value={phase.phaseName}>
-                  {phase.phaseName}
-                </option>
-              ))}
-            </select> */}
-          <button
+          </FormGroup>
+          <Button
             type="submit"
             onClick={this.constructNewProject}
             className="btn btn-primary"
-          >
+          >{''}
             Submit
-          </button>
-        </form>
+          </Button>
+        </Form>
+        </ModalBody>
+        </Modal>
       </React.Fragment>
     );
   }

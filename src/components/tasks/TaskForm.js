@@ -1,5 +1,20 @@
 import React, { Component } from "react";
-
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Input,
+  Form,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Toast,
+  ToastHeader,
+  ToastBody,
+  Label
+} from 'reactstrap';
 
 
 
@@ -13,6 +28,30 @@ export default class TaskForm extends Component {
     projectName:"",
 
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false,
+      userId: "",
+      taskName: "",
+      taskDueDate: "",
+      phaseName: "",
+      projectName:"",
+
+    };
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal,
+      userId: "",
+      taskName: "",
+      taskDueDate: "",
+      phaseName: "",
+      projectName:"",
+    }));
+  }
 
   handleFieldChange = evt => {
     const stateToChange = {};
@@ -30,16 +69,21 @@ export default class TaskForm extends Component {
       phaseName: this.state.phaseName,
       projectName: this.state.projectName
     };
-    this.props.addTask(task).then(this.props.history.goBack());
+    this.toggle()
+    this.props.addTask(task)
   };
   // the new task form
   render() {
     return (
       <React.Fragment>
-        <form className="">
-          <div className="">
+         <Button onClick={this.toggle}>AddTask</Button>
+         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+         <ModalBody>
+        <Form>
+
+          <div>
             <label htmlFor="taskName">task: </label>
-            <input
+            <Input
               type="text"
               required
               className=""
@@ -49,8 +93,8 @@ export default class TaskForm extends Component {
             />
           </div>
           <div className="">
-            <label htmlFor="taskDueDate">Task Due Date: </label>
-            <input
+            <Label htmlFor="taskDueDate">Task Due Date: </Label>
+            <Input
               type="date"
               required
               className=""
@@ -86,16 +130,19 @@ export default class TaskForm extends Component {
               ))}
             </select>
 
-        </form>
+        </Form>
 
 
         <button
           type="submit"
-          onClick={this.constructNewTask}
+          onClick={this.constructNewTask }
+
           className="btn btn-primary"
-        >
+        >{''}
           Submit
         </button>
+        </ModalBody>
+        </Modal>
       </React.Fragment>
     );
   }

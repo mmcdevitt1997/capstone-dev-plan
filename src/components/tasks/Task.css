@@ -8,3 +8,10 @@ body {
     color: #747474;
     background-color: #272727;
 }
+
+.marginLeft {
+    margin-left: 20px;
+}
+.marginRight{
+    margin-right: 20px;
+}

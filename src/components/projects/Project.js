@@ -12,7 +12,7 @@ export default class Project extends Component {
         return (
             <div>
                 <h1 className="title">Project Page</h1>
-                <div>
+                <div className='projectButton'>
                      < ProjectForm phases={this.props.phases} {...this.props} addProject={this.props.addProject} projects={this.props.projects}/>
                 </div>
 

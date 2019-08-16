@@ -1,7 +1,9 @@
 div.card-body{
     width: 300px;
 }
-
+.projectButton{
+margin-bottom: 10px;
+}
 
 .card {
     max-width: fit-content;

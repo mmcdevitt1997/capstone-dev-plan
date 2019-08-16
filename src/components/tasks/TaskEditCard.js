@@ -34,7 +34,6 @@ export default class TaskEditCard extends Component{
              .then(task => {
                console.log(task)
                this.setState({
-
                 taskName: task.taskName,
                  taskDueDate: task.taskDueDate,
                  phaseName: task.phaseName,

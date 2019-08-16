@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText, Modal, ModalBody } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 export default class ProjectForm extends Component {
   state = {
@@ -54,6 +54,7 @@ export default class ProjectForm extends Component {
       <React.Fragment>
               <Button onClick={this.toggle}>Add Project</Button>
               <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                <ModalHeader>Add Project</ModalHeader>
               <ModalBody>
         <Form>
           <FormGroup>

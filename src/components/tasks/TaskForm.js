@@ -7,12 +7,6 @@ import {
   ModalFooter,
   Input,
   Form,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Toast,
-  ToastHeader,
-  ToastBody,
   Label
 } from 'reactstrap';
 
@@ -76,8 +70,9 @@ export default class TaskForm extends Component {
   render() {
     return (
       <React.Fragment>
-         <Button onClick={this.toggle}>AddTask</Button>
+         <Button  onClick={this.toggle}>Add Task</Button>
          <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+         <ModalHeader>Add Task</ModalHeader>
          <ModalBody>
         <Form>
 
@@ -132,15 +127,23 @@ export default class TaskForm extends Component {
 
         </Form>
 
-
-        <button
+        <ModalFooter>
+        <Button
           type="submit"
           onClick={this.constructNewTask }
 
           className="btn btn-primary"
         >{''}
           Submit
-        </button>
+        </Button>
+        <Button
+        onClick={this.toggle}
+        color="secondary"
+        >
+         Cancel
+        </Button>
+
+        </ModalFooter>
         </ModalBody>
         </Modal>
       </React.Fragment>

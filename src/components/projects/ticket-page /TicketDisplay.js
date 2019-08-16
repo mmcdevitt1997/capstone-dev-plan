@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import "./ticket.css"
+import TaskForm from "../../tasks/TaskForm"
 import {
     Card,
     CardTitle,
-    Button,
-    CardBody,
-    CardSubtitle
   } from 'reactstrap';
 
 
@@ -14,7 +12,6 @@ export default class TicketDisplay extends Component {
     constructor(props) {
         super(props);
         this.state = { value: 'Ticket will display here.' };
-
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -26,12 +23,7 @@ export default class TicketDisplay extends Component {
         return (
             <div >
                 <div>
-                <button type="button"
-                    className="btn btn-success"
-                    onClick={() => {
-                        this.props.history.push("/tasks/new")
-                    }
-                    }>Add Task</button>
+                <TaskForm phases={this.props.phases} {...this.props} addTask={this.props.addTask} projects={this.props.projects}/>
                     </div>
 
                 <select

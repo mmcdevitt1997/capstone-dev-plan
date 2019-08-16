@@ -31,7 +31,7 @@ export default class Ticket extends Component {
             <div>
                 <h1>Project Tickets</h1>
 
-                <TicketDisplay key={this.state.tickets.id} tickets={this.state.tickets} tasks={this.state.tasksß}{...this.props} />
+                <TicketDisplay key={this.state.tickets.id} tickets={this.state.tickets} tasks={this.state.tasks}{...this.props} />
 
             </div>
         )

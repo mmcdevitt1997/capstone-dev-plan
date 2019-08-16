@@ -57,7 +57,7 @@ class NavBar extends Component {
                   sessionStorage.clear()
                 }}
               >
-                Logout
+                <h6>Logout</h6>
               </Link>
 
             </NavItem>

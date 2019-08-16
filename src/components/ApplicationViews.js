@@ -142,28 +142,6 @@ class ApplicationViews extends Component {
           />
           <Route
             exact
-            path="/tasks/new"
-            render={props => {
-              if (this.isAuthenticated()) {
-            return <TaskForm phases={this.state.phases} {...props} addTask={this.addTask} projects={this.state.projects}/>
-          } else {
-            return <Redirect to="/login" />;
-              }
-            }}
-          />
-          <Route
-            exact
-            path="/projects/new"
-            render={props => {
-              if (this.isAuthenticated()) {
-              return  <ProjectForm {...props} gitRepos={this.state.gitRepos} phases={this.state.phases} addProject={this.addProject} />
-            } else {
-              return <Redirect to="/login" />;
-                }
-            }}
-          />
-          <Route
-            exact
             path="/projects"
             render={props => {
               if (this.isAuthenticated()) {
@@ -178,7 +156,7 @@ class ApplicationViews extends Component {
             path="/projects/:id/tickets"
             render={props => {
               if (this.isAuthenticated()) {
-              return <Ticket {...props} projects={this.state.projects} tasks={this.state.tasks} />
+              return <Ticket {...props} projects={this.state.projects} tasks={this.state.tasks} phases={this.state.phases} addTask={this.addTask}/>
             } else {
               return <Redirect to="/login" />;
                 }

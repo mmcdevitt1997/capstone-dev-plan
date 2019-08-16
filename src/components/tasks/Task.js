@@ -21,7 +21,7 @@ export default class Task extends Component {
 
         <div className="bigFlex">
           <div >
-            <h3 >To Do</h3>
+            <h3 style= {{color: '#FF652F'}}>To Do</h3>
             <div>
               <div>
                 {
@@ -35,7 +35,7 @@ export default class Task extends Component {
             </div>
           </div>
           <div >
-            <h3>Currently Working On</h3>
+            <h3 style= {{color: '#FFE400'}}>Currently Working On</h3>
             <div >
               {
 
@@ -50,7 +50,7 @@ export default class Task extends Component {
           </div>
 
         <div>
-          <h3>Finished Tasks </h3>
+          <h3 style= {{color: '#14A76C'}} >Finished Tasks </h3>
           <div >
 
             <div>

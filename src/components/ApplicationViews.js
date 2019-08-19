@@ -134,7 +134,7 @@ class ApplicationViews extends Component {
             path="/"
             render={props => {
               if (this.isAuthenticated()) {
-            return <Task {...props} tasks={this.state.tasks} phases={this.state.phases} deleteTask={this.deleteTask}  updateTask ={this.updateTask} projects={this.state.projects} addTask={this.addTask} />
+            return <Task {...props} tasks={this.state.tasks} projects={this.state.projects} phases={this.state.phases} deleteTask={this.deleteTask}  updateTask ={this.updateTask} projects={this.state.projects} addTask={this.addTask} />
           } else {
             return <Redirect to="/login" />;
               }

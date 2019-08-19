@@ -184,7 +184,7 @@ class ApplicationViews extends Component {
                projectTask = this.state.tasks.filter(task =>
                 task.projectName === (props.match.params.projectName)
                 )
-           return(<Task {...props}  tasks={projectTask} projects={this.projects} phases={this.state.phases} deleteTask={this.deleteTask} updateProject={this.updateProject} />)
+           return(<Task {...props}  tasks={projectTask} projects={this.state.projects} phases={this.state.phases} deleteTask={this.deleteTask} updateProject={this.updateProject} updateTask ={this.updateTask} />)
 
             } else {
               return <Redirect to="/login" />;

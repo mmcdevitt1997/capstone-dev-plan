@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TaskEditCard from "./TaskEditCard"
 import {
   Card,
   CardTitle,
@@ -21,7 +20,7 @@ export default class TaskCard extends Component {
     return (
       <Card key={this.props.task.id} style={{ backgroundColor: '#272727', borderColor: '#333' }}>
         <CardBody>
-          <CardTitle>{this.props.task.taskName}</CardTitle>
+          <CardTitle><b>{this.props.task.taskName}</b></CardTitle>
 
           <CardSubtitle>Due Date: {this.props.task.taskDueDate}</CardSubtitle>
           <CardSubtitle>Project: {this.props.task.projectName}</CardSubtitle>

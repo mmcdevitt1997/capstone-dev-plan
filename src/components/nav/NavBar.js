@@ -2,9 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import React, { Component } from "react"
 import { withRouter, Link, } from "react-router-dom"
 import "./NavBar.css"
-import { Nav, NavItem, Col, Row, Button, NavLink } from 'reactstrap';
+import { Nav, NavItem, Col, Row } from 'reactstrap';
 
-import classnames from 'classnames';
+
 
 
 

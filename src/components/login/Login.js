@@ -18,13 +18,6 @@ export default class Login extends Component {
         this.props.history.push("/");
       })
       .then(() => getUserGiHub.getUser())
-      .then(() =>
-        ProjectHandler.getAll().then(data => {
-          data.forEach(function (project) {
-            console.log(project);
-          });
-        })
-      );
   };
 
   render() {

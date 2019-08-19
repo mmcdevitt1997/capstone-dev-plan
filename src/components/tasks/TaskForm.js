@@ -77,7 +77,7 @@ export default class TaskForm extends Component {
         <Form>
 
           <div>
-            <label htmlFor="taskName">task: </label>
+            <label htmlFor="taskName">Task: </label>
             <Input
               type="text"
               required

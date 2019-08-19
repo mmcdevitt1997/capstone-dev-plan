@@ -4,11 +4,15 @@
     overflow: auto;
     display: flex;
 
-
-
+  }
+  .taskItem{
+    margin: 100%;
+  }
+  a.link {
+    text-decoration: none
   }
   .sidebar {
-    background-color: black;
+    background-color: #272727;
     color: white;
   }
  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
@@ -36,35 +40,12 @@
     flex-wrap: wrap;
     height: 100%;
     margin-left: -15px;
-   background-color: black;
+    background-color: #272727;
    margin-right: -15px;
 
 }
-
-
-
-/* .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
-    width: 50px;
-    height: 50px;
-    line-height: 45px;
-    text-align: center;
-    padding: 0;
-    border-radius: 50%;
-    justify-content: center;
-    margin-left: 30px;
-    margin-bottom: 10px;
-    margin-top: 5px;
-    background-color: green;
-} */
-/* .btn-secondary {
-    width: 50px;
-    height: 50px;
-    line-height: 45px;
-    text-align: center;
-    padding: 0;
-    border-radius: 50%;
-    justify-content: center;
-    margin-left: 30px;
-    margin-bottom: 10px;
-    margin-top: 5px;
-} */
+.nav-tabs .nav-item {
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-top: 5px;
+}

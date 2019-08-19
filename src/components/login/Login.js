@@ -3,6 +3,10 @@ import getUserGiHub from "../githubAPI/getUserGitHub";
 import { loginWithGithub } from "../../auth/UserManager";
 import "./Login.css";
 import ProjectHandler from "../apiHandler/ProjectHandler";
+import { Button, Form } from 'reactstrap';
+import { FaGithub } from 'react-icons/fa';
+import logo from "./Dev-Plan.png"
+
 
 
 export default class Login extends Component {
@@ -26,15 +30,15 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <h1>Welcome to Dev-Plan</h1>
-        <div className="login-container">
-          <h2>Login with Github</h2>
-          <form onSubmit={this.submit}>
-            <button type="button" onClick={() => this.handleGithub()}>
-              Sign in
-          </button>
-          </form>
-        </div>
+        <img src= {logo} alt="logo"></img>
+          <Form onSubmit={this.submit}>
+
+            <Button type="button"
+
+            onClick={() => this.handleGithub()}>
+              Sign in with GitHub <FaGithub /> </Button>
+          </Form>
+
       </div>
     );
   }

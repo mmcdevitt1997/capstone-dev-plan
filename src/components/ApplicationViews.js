@@ -1,18 +1,19 @@
+// eslint-disable-next-line
 import { Route, BrowserRouter as Router , withRouter, Redirect  } from "react-router-dom";
 import React, { Component } from "react";
 import Project from "./projects/Project";
 import Task from "./tasks/Task";
-import ProjectForm from "./projects/ProjectForm"
 import ProjectHandler from "./apiHandler/ProjectHandler"
 import UserHandler from "./apiHandler/UserHandler"
 import TaskHandler from "./apiHandler/TaskHandler"
-import TaskForm from "./tasks/TaskForm"
 import PhaseHandler from "./apiHandler/PhaseHandler"
 import getReposGithub from "./githubAPI/getReposGithub"
 import TaskEditCard from "./tasks/TaskEditCard"
 import SubTaskHandler from "./apiHandler/SubTaskHandler"
 import Ticket from "./projects/ticket-page /Ticket"
 import ProjectEdit from "./projects/ProjectEdit"
+
+
 
 
 
@@ -132,32 +133,10 @@ class ApplicationViews extends Component {
             path="/"
             render={props => {
               if (this.isAuthenticated()) {
-            return <Task {...props} tasks={this.state.tasks} phases={this.state.phases} deleteTask={this.deleteTask}  updateTask ={this.updateTask} />
+            return <Task {...props} tasks={this.state.tasks} projects={this.state.projects} phases={this.state.phases} deleteTask={this.deleteTask}  updateTask ={this.updateTask}  addTask={this.addTask} />
           } else {
             return <Redirect to="/login" />;
               }
-            }}
-          />
-          <Route
-            exact
-            path="/tasks/new"
-            render={props => {
-              if (this.isAuthenticated()) {
-            return <TaskForm phases={this.state.phases} {...props} addTask={this.addTask} projects={this.state.projects}/>
-          } else {
-            return <Redirect to="/login" />;
-              }
-            }}
-          />
-          <Route
-            exact
-            path="/projects/new"
-            render={props => {
-              if (this.isAuthenticated()) {
-              return  <ProjectForm {...props} gitRepos={this.state.gitRepos} phases={this.state.phases} addProject={this.addProject} />
-            } else {
-              return <Redirect to="/login" />;
-                }
             }}
           />
           <Route
@@ -165,7 +144,7 @@ class ApplicationViews extends Component {
             path="/projects"
             render={props => {
               if (this.isAuthenticated()) {
-              return <Project {...props} projects={this.state.projects} deleteProject={this.deleteProject} updateProject={this.updateProject} phases={this.state.phases} />
+              return <Project {...props} projects={this.state.projects} gitRepos={this.state.gitRepos} deleteProject={this.deleteProject} updateProject={this.updateProject} phases={this.state.phases} addProject={this.addProject} />
             } else {
               return <Redirect to="/login" />;
                 }
@@ -176,7 +155,7 @@ class ApplicationViews extends Component {
             path="/projects/:id/tickets"
             render={props => {
               if (this.isAuthenticated()) {
-              return <Ticket {...props} projects={this.state.projects} tasks={this.state.tasks} />
+              return <Ticket {...props} projects={this.state.projects} tasks={this.state.tasks} phases={this.state.phases} addTask={this.addTask}/>
             } else {
               return <Redirect to="/login" />;
                 }
@@ -204,7 +183,7 @@ class ApplicationViews extends Component {
                projectTask = this.state.tasks.filter(task =>
                 task.projectName === (props.match.params.projectName)
                 )
-           return(<Task {...props}  tasks={projectTask} projects={this.projects} phases={this.state.phases} updateProject= {this.updateProject} />)
+           return(<Task {...props}  tasks={projectTask} projects={this.state.projects} phases={this.state.phases} deleteTask={this.deleteTask} updateProject={this.updateProject} updateTask ={this.updateTask} addTask ={this.addTask}/>)
 
             } else {
               return <Redirect to="/login" />;

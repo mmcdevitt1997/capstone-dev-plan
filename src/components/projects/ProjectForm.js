@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button, Form, FormGroup, Label, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 export default class ProjectForm extends Component {
   state = {
@@ -7,6 +8,27 @@ export default class ProjectForm extends Component {
     projectDueDate: "",
     phaseName: ""
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false,
+      userId: "",
+      projectName: "",
+      projectDueDate: "",
+      phaseName: ""
+    }
+    this.toggle = this.toggle.bind(this);
+  }
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal,
+      userId: "",
+      projectName: "",
+      projectDueDate: "",
+      phaseName: "",
+    }));
+  }
+
 
   handleFieldChange = evt => {
     const stateToChange = {};
@@ -23,63 +45,62 @@ export default class ProjectForm extends Component {
       projectDueDate: this.state.projectDueDate,
       phaseName: this.state.phaseName
     };
-    this.props.addProject(project).then(() => this.props.history.push("/projects"));
+    this.toggle()
+    this.props.addProject(project)
   };
   // the new task form
   render() {
     return (
       <React.Fragment>
-        <form className="">
-          <div className="">
-            <label htmlFor="projectName">
-              Enter the name of your project repo
+        <Button onClick={this.toggle}>Add Project</Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader>Add Project</ModalHeader>
+          <ModalBody>
+            <Form>
+              <FormGroup>
+                <label htmlFor="projectName">
+                  Enter the name of your project repo:
             </label>
-            <select
-              name="projectName"
-              id="projectName"
-              onChange={this.handleFieldChange}
-              value = {this.state.projectName}
-            >
-              <option >Select Repo</option>
-              {this.props.gitRepos.map(gitRepo=> (
-                <option key={gitRepo.id} id={gitRepo.id} value={gitRepo.name}>
-                    {gitRepo.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="">
-            <label htmlFor="projectDueDate"> Project Due Date</label>
-            <input
-              type="date"
-              required
-              className=""
-              onChange={this.handleFieldChange}
-              id="projectDueDate"
-              placeholder="Date of project"
-            />
-          </div>
-          {/* <select
-              name="phase"
-              id="phaseName"
-              onChange={this.handleFieldChange}
-              value = {this.state.phaseName}
-            >
-              <option value="phaseName">Select where you are in your project</option>
-              {this.props.phases.map(phase=> (
-                <option key={phase.id} id={phase.id} value={phase.phaseName}>
-                  {phase.phaseName}
-                </option>
-              ))}
-            </select> */}
-          <button
-            type="submit"
-            onClick={this.constructNewProject}
-            className="btn btn-primary"
-          >
-            Submit
-          </button>
-        </form>
+                <select
+                  name="projectName"
+                  id="projectName"
+                  onChange={this.handleFieldChange}
+                  value={this.state.projectName}
+                >
+                  <option >Select Repo</option>
+                  {this.props.gitRepos.map(gitRepo => (
+                    <option key={gitRepo.id} id={gitRepo.id} value={gitRepo.name}>
+                      {gitRepo.name}
+                    </option>
+                  ))}
+                </select>
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="projectDueDate"> Project Due Date:</Label>
+                <input
+                  type="date"
+                  required
+                  style={{ width: 'fitContent' }}
+                  onChange={this.handleFieldChange}
+                  id="projectDueDate"
+                  placeholder="Date of project"
+                />
+              </FormGroup>
+              <Button
+              className = "space"
+                type="submit"
+                onClick={this.constructNewProject}
+              >{''}
+                Submit
+          </Button>
+              <Button
+                onClick={this.toggle}
+              >
+                Cancel
+        </Button>
+            </Form>
+          </ModalBody>
+        </Modal>
       </React.Fragment>
     );
   }

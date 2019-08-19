@@ -1,30 +1,30 @@
 import React, { Component } from "react";
 import "./Task.css"
 import TaskCard from "./TaskCard"
+import TaskForm from "./TaskForm"
+
+
 
 export default class Task extends Component {
 
-  render() {
 
+
+  render() {
     return (
       <div>
-        <h1>Task Page</h1>
-        <div className="AddTaskButton">
-          <button type="button"
-            className="btn btn-success"
-            onClick={() => {
-              this.props.history.push("/tasks/new")
-            }
-            }>Add Task</button>
+      <div>
+        <h1>Task Board</h1>
+        <div className="taskButton" >
+        <TaskForm phases={this.props.phases} tasks={this.props.tasks} {...this.props} addTask={this.props.addTask} projects={this.props.projects}/>
+         </div>
         </div>
 
         <div className="bigFlex">
-          <div className="">
-            <h3>To Do</h3>
-            <div className="">
-              <div className="">
+          <div >
+            <h3 style= {{color: '#FF652F'}}>To Do</h3>
+            <div>
+              <div>
                 {
-
                   this.props.tasks.filter(tasks => tasks.phaseName === "To Do").map(taskFilter =>
                     <div key={taskFilter.id} >
                       <TaskCard key={taskFilter.id} task={taskFilter} phases={this.phases} {...this.props} />
@@ -34,9 +34,9 @@ export default class Task extends Component {
               </div>
             </div>
           </div>
-          <div className="">
-            <h3>Currently Working On</h3>
-            <div className="">
+          <div >
+            <h3 style= {{color: '#FFE400'}}>Currently Working On</h3>
+            <div >
               {
 
                 this.props.tasks.filter(tasks => tasks.phaseName === "Current Task").map(taskFilter =>
@@ -49,11 +49,11 @@ export default class Task extends Component {
 
           </div>
 
-        <div className="">
-          <h3>Finished Tasks </h3>
-          <div className="">
+        <div>
+          <h3 style= {{color: '#14A76C'}} >Finished Tasks </h3>
+          <div >
 
-            <div className="">
+            <div>
               {
                 this.props.tasks.filter(tasks => tasks.phaseName === "Done").map(taskFilter =>
                   <div key={taskFilter.id}>

@@ -3,3 +3,18 @@
     flex-direction: row;
     justify-content:space-evenly;
 }
+
+body {
+    color: #747474;
+    background-color: #272727;
+}
+.taskButton{
+    margin-bottom: 10px;
+}
+
+.marginLeft {
+    margin-left: 20px;
+}
+.marginRight{
+    margin-right: 20px;
+}

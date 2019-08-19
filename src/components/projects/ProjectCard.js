@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import "./ProjectCard.css"
 import {
-  CardTitle
+  Card,
+  CardTitle,
+  Button,
+  CardBody,
+  CardSubtitle
 } from 'reactstrap';
 
 export default class ProjectCard extends Component {
@@ -13,39 +17,43 @@ export default class ProjectCard extends Component {
   render() {
 
     return (
-      <div>
-        <div key={this.props.project.id} className="card">
-          <div className="card-body">
+      <Card style = {{backgroundColor: '#272727', borderColor: '#333'}}>
+        <CardBody key={this.props.project.id}>
             <CardTitle>{this.props.project.projectName}</CardTitle>
-            <p>Due Date: {this.props.project.projectDueDate}</p>
-            <button
+            <CardSubtitle>Due Date: {this.props.project.projectDueDate}</CardSubtitle>
+            <Button
               onClick={() => this.props.deleteProject(this.props.project.id)}
-              className="delete-btn"
+              style={{ backgroundColor: 'red', padding: '1px 1px' }}
+              className="marginRight"
             >
-              Delete
-          </button>
-            <button
-              onClick={() => this.props.history.push(`projects/${this.props.project.id}/edit`)}
-              className="btn"
-            >
-              Edit
-          </button>
-            <button
+               <img alt="Trash Bin" src="https://img.icons8.com/ios/25/000000/trash.png"></img>
+          </Button>
+
+            <Button
+               style={{ padding: '1px 1px', margin:'5px'  }}
               onClick={() => this.props.history.push(`/projects/${this.props.project.id}/tickets`)
               }
-              className="btn"
+
             >
               Tickets
-          </button>
-            <button
+          </Button>
+            <Button
+            style={{ padding: '1px 1px' }}
               onClick={() => this.props.history.push(`/projects/${this.props.project.projectName}/tasks`)}
-              className="btn"
+
             >
               Task Page
-          </button>
-          </div>
-        </div>
-      </div>
+          </Button>
+          <Button
+              onClick={() => this.props.history.push(`projects/${this.props.project.id}/edit`)}
+              style={{ backgroundColor: 'white', padding: '1px 1px' }}
+              className="marginLeft"
+
+            >
+            <img alt="Edit Button"src="https://img.icons8.com/pastel-glyph/25/000000/edit.png"></img>
+          </Button>
+        </CardBody>
+      </Card>
     )
   }
 }

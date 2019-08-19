@@ -1,5 +1,13 @@
 import React, { Component } from "react";
 import TaskHandler from "../apiHandler/TaskHandler"
+import {
+  Button,
+  FormGroup,
+  Form,
+  Label
+} from 'reactstrap';
+
+
 
 export default class TaskEditCard extends Component{
     state = {
@@ -34,7 +42,6 @@ export default class TaskEditCard extends Component{
              .then(task => {
                console.log(task)
                this.setState({
-
                 taskName: task.taskName,
                  taskDueDate: task.taskDueDate,
                  phaseName: task.phaseName,
@@ -48,33 +55,33 @@ export default class TaskEditCard extends Component{
 
         return (
           <React.Fragment>
-            <form className="">
-              <div className="">
-                <label htmlFor="taskName">task</label>
+            <Form>
+              <FormGroup>
+                <Label htmlFor="taskName">Task Name: </Label>
                 <input
                   type="text"
                   required
-                  className=""
                   onChange={this.handleFieldChange}
                   id="taskName"
                   placeholder="Task Name"
                   value = {this.state.taskName}
                 />
-              </div>
-              <div className="">
-                <label htmlFor="taskDueDate">Task Due Date</label>
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="taskDueDate">Task Due Date:</Label>
                 <input
                   type="date"
                   required
-                  className=""
                   onChange={this.handleFieldChange}
                   id="taskDueDate"
                   placeholder="Date of task"
                   value = {this.state.taskDueDate}
                 />
-              </div>
+              </FormGroup>
+              <FormGroup>
+              <Label htmlFor="projectName">Project Name:</Label>
               <select
-                  name=""
+
                   id="projectName"
                   onChange={this.handleFieldChange}
                   value = {this.state.projectName}
@@ -85,6 +92,9 @@ export default class TaskEditCard extends Component{
                     </option>
                   ))}
                 </select>
+                </FormGroup>
+                <FormGroup>
+                <Label htmlFor="phaseName">Task Phase:</Label>
               <select
                   name="phase"
                   id="phaseName"
@@ -97,17 +107,16 @@ export default class TaskEditCard extends Component{
                     </option>
                   ))}
                 </select>
+                </FormGroup>
 
-            </form>
-
-
-            <button
-              type="submit"
+                </Form>
+            <Button
               onClick={this.updateCurrentTask}
-              className="btn btn-primary"
+              className = "submit"
             >
               Submit
-            </button>
+            </Button>
+
           </React.Fragment>
         );
       }

@@ -1,68 +1,60 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# <Dev / Plan>
 
-## Available Scripts
+Dev-Plan is my front-end capstone for Nashville Software School built using React. Dev-Plan helps developers breakdown and manage the different tasks.That integrates withGitHub to provide developers with a way to manage projects and tasks. Helping to mange and maximize the devopler's workflow.
 
-In the project directory, you can run:
+## Getting Started
 
-### `npm start`
+For this react app you will need to install Dev-Plan with.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+npm install
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Installing
 
-### `npm test`
+Then you just have to run the app with.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npm start
+```
+### GitHub API
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Technologies:
+1. Create-React-App,
+2. GitHub Firebase Auth
+3. Firebase Storage
+4. Firebase Database
+5. Reactstrap
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Config File
+For the config file there should be two files one for firebase dev-plan/src/config/FbConfig.js and another for the GitHub API at dev-plan/src/config/GithubAPIKeys.js
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Firebase Example
+```
+import firebase from "firebase/app"
+import "firebase/firestore"
+import "firebase/auth"
+import Rebase from "re-base"
 
-### `npm run eject`
+const firebaseConfig = {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
+  };
+  // Initialize Firebase
+ const app = firebase.initializeApp(firebaseConfig);
+ const base = Rebase.createClass(app.database())
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+export {firebaseConfig, base}
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### GitHub API Example
+```
+export const clientId ="clientId= "
+export const clientSecret = "clientSecret= "
+```

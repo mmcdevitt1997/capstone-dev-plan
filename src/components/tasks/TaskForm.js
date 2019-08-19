@@ -130,8 +130,7 @@ export default class TaskForm extends Component {
         <ModalFooter>
         <Button
           type="submit"
-          onClick={this.constructNewTask }
-
+          onClick={this.constructNewTask}
           className="btn btn-primary"
         >{''}
           Submit

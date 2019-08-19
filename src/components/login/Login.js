@@ -3,7 +3,7 @@ import getUserGiHub from "../githubAPI/getUserGitHub";
 import { loginWithGithub } from "../../auth/UserManager";
 import "./Login.css";
 import ProjectHandler from "../apiHandler/ProjectHandler";
-import { Button, Form} from 'reactstrap';
+import { Button, Form } from 'reactstrap';
 import { FaGithub } from 'react-icons/fa';
 import logo from "./Dev-Plan.png"
 

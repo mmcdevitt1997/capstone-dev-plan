@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 export default class ProjectForm extends Component {
   state = {

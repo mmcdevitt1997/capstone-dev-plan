@@ -26,7 +26,7 @@ export default class ProjectCard extends Component {
               style={{ backgroundColor: 'red', padding: '1px 1px' }}
               className="marginRight"
             >
-               <img src="https://img.icons8.com/ios/25/000000/trash.png"></img>
+               <img alt="Trash Bin" src="https://img.icons8.com/ios/25/000000/trash.png"></img>
           </Button>
 
             <Button
@@ -50,7 +50,7 @@ export default class ProjectCard extends Component {
               className="marginLeft"
 
             >
-            <img src="https://img.icons8.com/pastel-glyph/25/000000/edit.png"></img>
+            <img alt="Edit Button"src="https://img.icons8.com/pastel-glyph/25/000000/edit.png"></img>
           </Button>
         </CardBody>
       </Card>

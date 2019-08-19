@@ -15,7 +15,7 @@ export default class Task extends Component {
       <div>
         <h1>Task Board</h1>
         <div className="taskButton" >
-        <TaskForm phases={this.props.phases} {...this.props} addTask={this.props.addTask} projects={this.props.projects}/>
+        <TaskForm phases={this.props.phases} tasks={this.props.tasks} {...this.props} addTask={this.props.addTask} projects={this.props.projects}/>
          </div>
         </div>
 

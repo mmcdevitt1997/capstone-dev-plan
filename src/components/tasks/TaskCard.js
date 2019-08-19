@@ -32,7 +32,7 @@ export default class TaskCard extends Component {
             onClick={() => this.props.deleteTask(this.props.task.id)}
             style={{ backgroundColor: 'red', padding: '1px 1px' }}
           >
-            <img src="https://img.icons8.com/ios/25/000000/trash.png"></img>
+            <img alt="trash" src="https://img.icons8.com/ios/25/000000/trash.png"></img>
           </Button>
           <select
             name="phase"
@@ -53,7 +53,7 @@ export default class TaskCard extends Component {
             onClick={() => this.props.history.push(`/tasks/${this.props.task.id}/edit`)}
             style={{ backgroundColor: 'white', padding: '1px 1px' }}
           >
-            <img src="https://img.icons8.com/pastel-glyph/25/000000/edit.png"></img>
+            <img alt="edit" src="https://img.icons8.com/pastel-glyph/25/000000/edit.png"></img>
           </Button>
         </CardBody>
       </Card>

@@ -77,18 +77,18 @@ export default class TaskForm extends Component {
         <Form>
 
           <div>
-            <label htmlFor="taskName">task: </label>
+            <Label  className="black" htmlFor="taskName">Task: </Label>
             <Input
               type="text"
               required
-              className=""
+              className="black"
               onChange={this.handleFieldChange}
               id="taskName"
               placeholder="Task Name"
             />
           </div>
           <div className="">
-            <Label htmlFor="taskDueDate">Task Due Date: </Label>
+            <Label  className="black" htmlFor="taskDueDate">Task Due Date: </Label>
             <Input
               type="date"
               required

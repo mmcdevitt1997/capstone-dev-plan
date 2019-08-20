@@ -5,7 +5,7 @@
 }
 
 body {
-    color: #747474;
+    color: white;
     background-color: #272727;
 }
 .taskButton{
@@ -17,4 +17,10 @@ body {
 }
 .marginRight{
     margin-right: 20px;
+}
+.modal-content {
+    background-color: #272727;
+}
+.card{
+    background-color: #272727;
 }

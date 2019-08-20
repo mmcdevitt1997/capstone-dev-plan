@@ -18,3 +18,9 @@ body {
 .marginRight{
     margin-right: 20px;
 }
+.modal-content {
+    background-color: #272727;
+}
+.card{
+    background-color: #272727;
+}

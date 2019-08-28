@@ -15,9 +15,6 @@ import ProjectEdit from "./projects/ProjectEdit"
 
 
 
-
-
-
 class ApplicationViews extends Component {
   state = {
     users: [],
@@ -30,10 +27,10 @@ class ApplicationViews extends Component {
     subTask: []
 
   };
-  componentDidMount() {
-    UserHandler.getAll()
+  componentDidMount()  {
+       UserHandler.getAll()
       .then(users => this.setState({ users: users }))
-      .then(() => ProjectHandler.getAll())
+      .then(() =>  ProjectHandler.getAll())
       .then (projects => {
         this.setState({projects: projects})
       })

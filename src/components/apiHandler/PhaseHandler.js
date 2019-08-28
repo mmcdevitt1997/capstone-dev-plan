@@ -2,7 +2,7 @@ import ApiHandler from "./ApiHandler"
 
 export default Object.create(ApiHandler, {
     get: {
-       value: function (id) {
+       value:function (id) {
           return  ApiHandler.get("phases", id)
         }
     },

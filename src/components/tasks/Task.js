@@ -7,9 +7,9 @@ import TaskForm from "./TaskForm"
 
 export default class Task extends Component {
 
-
-
   render() {
+    let taskArry =
+    this.props.tasks.filter(tasks => tasks.phaseName === "Current Task") || []
     return (
       <div>
       <div>
@@ -36,10 +36,10 @@ export default class Task extends Component {
           </div>
           <div >
             <h3 style= {{color: '#FFE400'}}>Currently Working On</h3>
-            <div >
+            <div  >
               {
 
-                this.props.tasks.filter(tasks => tasks.phaseName === "Current Task").map(taskFilter =>
+              taskArry.map(taskFilter =>
                   <div key={taskFilter.id}  >
                     <TaskCard key={taskFilter.id} task={taskFilter} phases={this.phases} {...this.props} />
                   </div>

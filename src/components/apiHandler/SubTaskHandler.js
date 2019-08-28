@@ -11,7 +11,7 @@ getAll: {
     value: function (){
         return ApiHandler.all("subTasks")
         .then(subTaskData => {
-           let subTaskArr = ""
+           let subTaskArr = ''
               Object.keys(subTaskData).forEach(function(key){
                 subTaskData[key].id = key
               console.log(subTaskData)

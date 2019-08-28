@@ -12,7 +12,7 @@ export default Object.create(null, {
     },
     all: {
         value: function (resource) {
-            return fetch(`${url}/${resource}.json?orderBy="userId"&equalTo="${currentUserId}"`).then(data => data.json())
+            return fetch(`${url}/${resource}.json?orderBy="userId"&equalTo="${sessionStorage.getItem("userId")}"`).then(data => data.json())
         }
     },
 

@@ -14,13 +14,14 @@ export default class Login extends Component {
     loginWithGithub()
       .then(user => {
         this.props.onLogin(user);
+
         this.props.history.push("/")
       })
       .then(() => getUserGiHub.getUser())
-
   };
 
   render() {
+    console.log("*************  Login componentDidMount  ***************")
     return (
       <div>
         <img src={logo} alt="logo"></img>

@@ -37,7 +37,6 @@ export const saveUserToJson = user => {
     })
     .then(() => {
       setUserInSessionStorage(user);
-
       //gives the user object back in order to set the user in local storage
       return user;
     });
@@ -99,11 +98,12 @@ export const loginWithGithub = () => {
       const getCurrentUserReposTest = () => {
                    fetch(`${gitHubApi}user?$access_token=${token}`)
                      .then(r => r.json())
-                     .then(test => console.log(test))
+
              }
        sessionStorageToken(token)
+
        sessionStorageUserId(user.uid)
-      console.log("token: ", token, "user: ", user);
+
       return checkExistingUsers(user, token);
 
     });

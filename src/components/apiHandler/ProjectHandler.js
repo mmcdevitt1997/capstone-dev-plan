@@ -9,12 +9,17 @@ export default Object.create(ApiHandler, {
   getAll: {
     value: function() {
       return ApiHandler.all("projects").then(projectData => {
-        let projectArr = "";
-        Object.keys(projectData).forEach(function(key) {
-          projectData[key].id = key;
-          projectArr = Object.values(projectData);
-        });
-        return projectArr;
+        if (projectData !== null) {
+          const projectArray = Object.keys(projectData).map(keys => {
+            let newObj = { ...projectData[keys] };
+            newObj.id = keys;
+            return newObj;
+          });
+          return projectArray.reverse();
+        } else {
+          let projects = [];
+          return projects;
+        }
       });
     }
   },

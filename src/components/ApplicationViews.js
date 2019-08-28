@@ -17,6 +17,7 @@ import TaskEditCard from "./tasks/TaskEditCard";
 import SubTaskHandler from "./apiHandler/SubTaskHandler";
 import Ticket from "./projects/ticket-page /Ticket";
 import ProjectEdit from "./projects/ProjectEdit";
+import {getAllUsers} from "../auth/UserManager"
 
 class ApplicationViews extends Component {
   state = {
@@ -28,17 +29,20 @@ class ApplicationViews extends Component {
     teamUsers: [],
     gitRepos: [],
     subTask: [],
-    isLoaded: false
+
   }
 
-  componentDidMount() {
-    let newState = {isLoaded: true}
-    UserHandler.getAll()
-      .then(users => newState.users = users)
-      .then(() => ProjectHandler.getAll())
-      .then(projects => newState.projects = projects)
+
+  async componentDidMount() {
+    console.log("*************  ApplicationViews componentDidMount  ***************")
+    let newState = {};
+    await  ProjectHandler.getAll()
+      .then(projects =>{ newState.projects = projects})
       .then(() => TaskHandler.getAll())
-      .then(tasks => newState.tasks = tasks)
+      .then(tasks => {
+
+        newState.tasks = tasks
+      })
       .then(() => PhaseHandler.getAll())
       .then(phases => newState.phases = phases)
       .then(() => getReposGithub.getRepos())
@@ -47,6 +51,7 @@ class ApplicationViews extends Component {
       .then(subTasks => newState.subTask = subTasks)
       .then(() => this.setState(newState));
   }
+
 
   updateProject = editProject =>
     ProjectHandler.put(editProject)
@@ -109,6 +114,7 @@ class ApplicationViews extends Component {
   isAuthenticated = () => sessionStorage.getItem("userId") !== null;
 
   render() {
+    console.log("*************  ApplicationViews render()  ***************")
     return (
       <React.Fragment>
         <div>

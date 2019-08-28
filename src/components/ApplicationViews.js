@@ -9,7 +9,6 @@ import React, { Component } from "react";
 import Project from "./projects/Project";
 import Task from "./tasks/Task";
 import ProjectHandler from "./apiHandler/ProjectHandler";
-import UserHandler from "./apiHandler/UserHandler";
 import TaskHandler from "./apiHandler/TaskHandler";
 import PhaseHandler from "./apiHandler/PhaseHandler";
 import getReposGithub from "./githubAPI/getReposGithub";
@@ -17,7 +16,7 @@ import TaskEditCard from "./tasks/TaskEditCard";
 import SubTaskHandler from "./apiHandler/SubTaskHandler";
 import Ticket from "./projects/ticket-page /Ticket";
 import ProjectEdit from "./projects/ProjectEdit";
-import {getAllUsers} from "../auth/UserManager"
+
 
 class ApplicationViews extends Component {
   state = {
@@ -34,7 +33,7 @@ class ApplicationViews extends Component {
 
 
   async componentDidMount() {
-    console.log("*************  ApplicationViews componentDidMount  ***************")
+
     let newState = {};
     await  ProjectHandler.getAll()
       .then(projects =>{ newState.projects = projects})
@@ -114,7 +113,7 @@ class ApplicationViews extends Component {
   isAuthenticated = () => sessionStorage.getItem("userId") !== null;
 
   render() {
-    console.log("*************  ApplicationViews render()  ***************")
+
     return (
       <React.Fragment>
         <div>

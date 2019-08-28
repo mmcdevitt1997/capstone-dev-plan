@@ -21,7 +21,6 @@ export default class Login extends Component {
   };
 
   render() {
-    console.log("*************  Login componentDidMount  ***************")
     return (
       <div>
         <img src={logo} alt="logo"></img>

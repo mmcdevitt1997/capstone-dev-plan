@@ -1,7 +1,7 @@
 
 const url = "https://dev-plan-578fe.firebaseio.com"
 
-const currentUserId = sessionStorage.getItem("userId")
+
 
 
 export default Object.create(null, {

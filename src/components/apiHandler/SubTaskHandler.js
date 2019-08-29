@@ -14,7 +14,6 @@ getAll: {
            let subTaskArr = ''
               Object.keys(subTaskData).forEach(function(key){
                 subTaskData[key].id = key
-              console.log(subTaskData)
               subTaskArr = Object.values(subTaskData)
             })
             return subTaskArr

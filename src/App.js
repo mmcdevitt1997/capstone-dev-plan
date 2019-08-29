@@ -6,13 +6,15 @@ import NavBar from "./components/nav/NavBar";
 import ApplicationViews from "./components/ApplicationViews";
 import Login from "./components/login/Login";
 import {
-
   getUserInSessionStorage
 } from "./auth/UserManager";
+
+
 
 class App extends Component {
   state = {
     user: getUserInSessionStorage()
+
   };
 
   render() {

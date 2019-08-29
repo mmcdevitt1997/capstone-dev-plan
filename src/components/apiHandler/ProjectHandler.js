@@ -8,14 +8,17 @@ export default Object.create(ApiHandler, {
   },
   getAll: {
     value: function() {
-      return ApiHandler.all("projects").then(projectData => {
-        let projectArr = "";
-        Object.keys(projectData).forEach(function(key) {
-          projectData[key].id = key;
-          projectArr = Object.values(projectData);
-        });
-        return projectArr;
-      });
+      return ApiHandler.all("projects")
+        .then(subTaskData => {
+           let subTaskArr = ""
+              Object.keys(subTaskData).forEach(function(key){
+                subTaskData[key].id = key
+              subTaskArr = Object.values(subTaskData)
+            })
+            return subTaskArr
+    }
+
+        )
     }
   },
   delete: {

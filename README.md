@@ -1,60 +1,20 @@
-# <Dev / Plan>
+# < Dev / Plan >
 
-Dev-Plan is my front-end capstone for Nashville Software School built using React. Dev-Plan helps developers breakdown and manage the different tasks.That integrates withGitHub to provide developers with a way to manage projects and tasks. Helping to mange and maximize the devopler's workflow.
+Dev-Plan is my front-end capstone for Nashville Software School built using React. Dev-Plan helps developers breakdown and manage the different tasks.That integrates with GitHub to provide developers with a way to manage projects and tasks. Helping to mange and maximize the devopler's workflow.
 
-## Getting Started
-
-For this react app you will need to install Dev-Plan with.
-
-```
-npm install
-```
-
-### Installing
-
-Then you just have to run the app with.
-
-```
-npm start
-```
-### GitHub API
+## Goals For The User:
+1. Create an easy-to-use place for the user to come to track project tasks
+2. Encourage workflow by utilizing the GitHub API integrated with the user’s task list
+3. A simple and sleek UI to minimize distraction using a dark theme
+4. For the user to see the tickets for the project they are working on 
 
 
 ### Technologies:
-1. Create-React-App,
+1. React,
 2. GitHub Firebase Auth
 3. Firebase Storage
 4. Firebase Database
 5. Reactstrap
+6. GitHub API
 
-### Config File
-For the config file there should be two files one for firebase dev-plan/src/config/FbConfig.js and another for the GitHub API at dev-plan/src/config/GithubAPIKeys.js
-
-### Firebase Example
-```
-import firebase from "firebase/app"
-import "firebase/firestore"
-import "firebase/auth"
-import Rebase from "re-base"
-
-const firebaseConfig = {
-    apiKey: "",
-    authDomain: "",
-    databaseURL: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: ""
-  };
-  // Initialize Firebase
- const app = firebase.initializeApp(firebaseConfig);
- const base = Rebase.createClass(app.database())
-
-export {firebaseConfig, base}
-```
-
-### GitHub API Example
-```
-export const clientId ="clientId= "
-export const clientSecret = "clientSecret= "
-```
+ < Dev / Plan > was deployed through firebase, to use simply [click here](https://dev-plan-578fe.firebaseapp.com/login)
